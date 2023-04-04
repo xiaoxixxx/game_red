@@ -1,0 +1,122 @@
+<script>
+	import pageAnimation from '@/components/yy-PageAnimation';
+	import {
+		useI18n
+	} from "vue-i18n";
+
+
+	export default {
+		mixins: [pageAnimation],
+		onLaunch: function() {
+
+		},
+		onShow: function() {
+			// console.log('App Show')
+
+		},
+		onHide: function() {
+			// console.log('App Hide')
+		},
+
+	}
+</script>
+
+<style lang="scss">
+	@font-face {
+		font-family: "PingFangSC";
+		src: url('@/static/PingFang.ttf');
+	}
+
+	/*每个页面公共css */
+	.nut-navbar {
+		padding: 0 !important;
+	}
+
+	.maskItem img,
+	.mt70 img {
+		width: calc(100% - 45rpx) !important;
+		max-height: 100% !important;
+	}
+
+	page {
+		font-family: PingFangSC;
+		// background-color: #EAEFF0;
+		color: #000;
+		font-size: 30rpx;
+		animation: .3s linear all;
+		text-transform: capitalize;
+	}
+
+	.secondClo {
+		font-weight: bold;
+		color: #2A5F64;
+	}
+
+	.inp {
+		padding: 44rpx 49rpx;
+		background: #FFFFFF;
+		box-shadow: 0px 1rpx 51rpx 0px rgba(64, 46, 197, 0.05);
+		border-radius: 30rpx;
+		font-size: 28rpx;
+	}
+
+	.btns {
+		transition: .3s linear all;
+	}
+
+	.collapse-content {
+		font-size: 23rpx !important;
+		color: #666666 !important;
+	}
+
+	.collapse-icon-title {
+		font-size: 32rpx !important;
+		color: #000 !important;
+	}
+
+	
+
+	.nut-noticebar-page {
+		background: rgba(0, 0, 0, 0.18) !important;
+		border-radius: 20rpx !important;
+		height: 80rpx !important;
+
+		.left-icon {
+			margin: 0 20rpx 0 0 !important;
+		}
+	}
+
+	uni-page {
+
+		display: webkit-box;
+		overflow: auto;
+		paddingb-bottom: 10rpx;
+		margin-bottom: -10rpx; // overflow: hidden;
+		font-family: SF UI Text;
+	}
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+	// 签名大小
+	.nut-signature .nut-signature-inner {
+		height: 70vh !important;
+	}
+	.sign{
+		.nut-button{
+			width: 90% !important ;
+			margin: 20rpx 5% !important;
+			height: 100rpx;
+			border-radius: 20rpx;
+		}
+	}
+	
+	.desc{
+		img{
+			width: 100% !important;
+		}
+	}
+	.nut-button--primary{
+		background-color: rgb(22, 183, 57) !important;
+	}
+</style>

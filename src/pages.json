@@ -1,0 +1,44 @@
+{
+	"easycom": {
+		"custom": {
+			"^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue",
+			"Loading": "@/components/loading/loading.vue"
+
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabbar/index"
+		},{
+			"path": "pages/login/login"
+		},
+		{
+			"path": "pages/login/register"
+		},
+		
+		{
+			"path": "pages/login/resetPwd"
+		}
+    ],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom",
+		"style": {
+			"app-plus": {
+				"animationType": "fade-in",
+				"animationDuration": 300
+			}
+		}
+	},
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"selectedColor": "#f2413b",
+
+		"list": [
+
+		]
+	}
+}
