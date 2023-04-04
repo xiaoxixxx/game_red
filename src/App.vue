@@ -39,7 +39,7 @@
 	}
 
 	page {
-		font-family: PingFangSC;
+		font-family:Avenir,Helvetica,Arial,sans-serif;
 		// background-color: #EAEFF0;
 		color: #000;
 		font-size: 30rpx;

@@ -252,6 +252,54 @@ ol li {
 	.color0{
 		color: #000;
 	}
+	.pagePad{
+		padding: 10rpx 30rpx;
+	}
+	.nav {
+		background: linear-gradient(90deg, #cd0103, #f64841);
+	}
 	// .nut-button--primary,.nut-button--primary::before{
 	// 	background-color: #60B661 !important; 
 	// }
+	@keyframes move {
+		0% {
+			transform: translateY(0);
+		}
+
+		25% {
+			transform: translateY(20rpx);
+		}
+
+		50% {
+			transform: translateY(0);
+		}
+
+		75% {
+			transform: translateY(20rpx);
+		}
+
+		100% {
+			transform: translateY(0);
+		}
+	}
+	@keyframes move2 {
+		0% {
+			transform: translateY(20rpx);
+		}
+	
+		25% {
+			transform: translateY(0);
+		}
+	
+		50% {
+			transform: translateY(20rpx);
+		}
+	
+		75% {
+			transform: translateY(0);
+		}
+	
+		100% {
+			transform: translateY(20rpx);
+		}
+	}

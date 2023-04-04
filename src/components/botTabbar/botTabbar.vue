@@ -44,27 +44,27 @@
 			const activeIndex = ref(props.activeIndex)
 			const tabBarList = ref([{
 				text: 'Home',
-				iconPath: '/static/themeNum1/tqb-tabbar/home.png',
-				selectPath: "/static/themeNum1/tqb-tabbar/home1.png",
+				iconPath: '/static/tabbar/home1.png',
+				selectPath: '/static/tabbar/home.png',
 				pagePath: '/',
 			}, {
 				text: 'News',
-				iconPath: '/static/themeNum1/tqb-tabbar/news.png',
-				selectPath: "/static/themeNum1/tqb-tabbar/news1.png",
+				iconPath: '/static/tabbar/check1.png',
+				selectPath: '/static/tabbar/check.png',
 				pagePath: '/pages/tabbar/news',
 			}, {
 				text: '',
-				iconPath: '/static/themeNum1/tqb-tabbar/add.png',
+				iconPath: '/static/tabbar/invite.png',
 				pagePath: '/pages/tabbar/panel'
 			}, {
-				text: 'Construct',
-				iconPath: '/static/themeNum1/tqb-tabbar/invest.png',
-				selectPath: "/static/themeNum1/tqb-tabbar/invest1.png",
+				text: 'wallet',
+				iconPath: '/static/tabbar/wallet1.png',
+				selectPath: '/static/tabbar/wallet.png',
 				pagePath: '/pages/tabbar/construct',
 			}, {
-				text: 'Mine',
-				iconPath: '/static/themeNum1/tqb-tabbar/mine.png',
-				selectPath: "/static/themeNum1/tqb-tabbar/mine1.png",
+				text: 'me',
+				iconPath: '/static/tabbar/me1.png',
+				selectPath: '/static/tabbar/me.png',
 				pagePath: '/pages/tabbar/mine',
 			}])
 
@@ -131,7 +131,7 @@
 				font-size: 20rpx;
 				font-weight: 400;
 				margin-top: 10rpx;
-				color: #dddddd;
+				color: #333;
 			}
 
 
@@ -147,7 +147,7 @@
 	}
 
 	.actCho {
-		color: #13a960 !important;
+		color: #f2413b !important;
 	}
 
 	// .tqb-tabbar-popup {

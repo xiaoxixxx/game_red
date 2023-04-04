@@ -418,9 +418,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.nav {
-		background: linear-gradient(90deg, #cd0103, #f64841);
-	}
+	
 
 	.l_bg {
 		min-height: 100vh;
