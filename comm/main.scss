@@ -158,7 +158,7 @@ ol li {
 	overflow: hidden;
 }
 .borderB {
-	border-bottom: 1rpx solid;
+	border-bottom: 1rpx solid #e1e1e1;
 }
 .borderT {
 	border-top: 1rpx solid;
@@ -173,25 +173,22 @@ ol li {
 	color:#fff;
 }
 .loginInp{
-	height:80rpx;
+	height: 110rpx;
 }
-.l_inp{
-	height:120rpx;
-	input{
-		height:100%;
-		width:100%;
-	}
-}
+
 .l_inpS{
-	height:110rpx;
+		
+	height: 110rpx;
+	border-radius: 10rpx;
 	input{
 		height:100%;
 		width:100%;
 	}
 }
 .settingInp{
-	background-color: #fff;
-	height: 120rpx;
+border: 5rpx solid #faa09d;
+	// background-color: #fff;
+	height: 110rpx;
 	padding-left: 45rpx;
 	border-radius: 15rpx;
 	color: #333;
@@ -200,7 +197,7 @@ ol li {
 	color: #ccc;
 }
 .inpBtn{
-	height: 110rpx;
+	height: 100rpx;
 	border-radius: 15rpx;
 	color: #fff;
 	font-size: 32rpx;
@@ -210,9 +207,11 @@ ol li {
 		background: #fff;
 		border-radius: 20rpx;
 		padding: 4rpx 45rpx 34rpx 45rpx;
-		margin-bottom: 30rpx;
 		font-size: 28rpx;
 		color: #333;
+		width: 80%;
+		margin: 0  auto 30rpx;
+		box-shadow: 0 10rpx 20rpx 5rpx #ccc;
 		.vvItem {
 			display: flex;
 			justify-content: space-between;
@@ -257,6 +256,17 @@ ol li {
 	}
 	.nav {
 		background: linear-gradient(90deg, #cd0103, #f64841);
+	}
+	.inpSearch{
+		    top: 0.3125rem;
+		    left: 0.625rem;
+		    width: 7.8125rem;
+		    height: 2.1875rem;
+		    border-radius: 1.25rem;
+		    border: 0.03125rem solid #f64841;
+		    display: flex;
+		    align-items: center;
+		    margin: 0.625rem auto;
 	}
 	// .nut-button--primary,.nut-button--primary::before{
 	// 	background-color: #60B661 !important; 

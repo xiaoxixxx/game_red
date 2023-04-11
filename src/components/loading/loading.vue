@@ -1,250 +1,160 @@
 <template>
-	<div class="loader" v-if="loading">
-		<div class="cssload-loader">
-			<div class="cssload-inner cssload-one"></div>
-			<div class="cssload-inner cssload-two"></div>
-			<div class="cssload-inner cssload-three"></div>
+	<div class="loader center" v-if="loading">
+		<div align="center" class="cssload-fond">
+			<div class="cssload-container-general">
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_1"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_2"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_3"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_4"> </div></div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
+	
 	const loading = ref(false)
-	defineExpose({
-		loading
-	})
+	defineExpose({loading})
+	
 </script>
 
 <style lang="scss">
 	.loader {
-		background: rgba(0, 0, 0, 0.6);
-		bottom: 0;
-		left: 0;
-		overflow: hidden;
-		position: fixed;
-		right: 0;
-		top: 0;
-		z-index: 99999;
-		display: flex;
-		align-items: center;
-		// justify-content: center;
+	    background: rgba(0,0,0,0.8);
+	    bottom: 0;
+	    left: 0;
+	    overflow: hidden;
+	    position: fixed;
+	    right: 0;
+	    top: 0;
+	    z-index: 99999;
 	}
-
-	.cssload-loader {
-		position: relative;
-		left: calc(50% - 31px);
-		width: 62px;
-		height: 62px;
+	
+	.cssload-fond{
+		position:relative;
+		margin: auto;
+	}
+	
+	.cssload-container-general
+	{
+		animation:cssload-animball_two 2.15s infinite;
+			-o-animation:cssload-animball_two 1.15s infinite;
+			-ms-animation:cssload-animball_two 1.15s infinite;
+			-webkit-animation:cssload-animball_two 1.15s infinite;
+			-moz-animation:cssload-animball_two 1.15s infinite;
+		width:43px; height:43px;
+	}
+	.cssload-internal
+	{
+		width:43px; height:43px; position:absolute;
+	}
+	.cssload-ballcolor
+	{
+		width: 19px;
+		height: 19px;
 		border-radius: 50%;
-		-o-border-radius: 50%;
-		-ms-border-radius: 50%;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
-		perspective: 780px;
 	}
-
-	.cssload-inner {
+	.cssload-ball_1, .cssload-ball_2, .cssload-ball_3, .cssload-ball_4
+	{
 		position: absolute;
-		width: 100%;
-		height: 100%;
-		box-sizing: border-box;
-		-o-box-sizing: border-box;
-		-ms-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		border-radius: 50%;
-		-o-border-radius: 50%;
-		-ms-border-radius: 50%;
-		-webkit-border-radius: 50%;
-		-moz-border-radius: 50%;
+		animation:cssload-animball_one 1.15s infinite ease;
+			-o-animation:cssload-animball_one 1.15s infinite ease;
+			-ms-animation:cssload-animball_one 1.15s infinite ease;
+			-webkit-animation:cssload-animball_one 1.15s infinite ease;
+			-moz-animation:cssload-animball_one 1.15s infinite ease;
 	}
-
-	.cssload-inner.cssload-one {
-		left: 0%;
-		top: 0%;
-		animation: cssload-rotate-one 1.15s linear infinite;
-		-o-animation: cssload-rotate-one 1.15s linear infinite;
-		-ms-animation: cssload-rotate-one 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-one 1.15s linear infinite;
-		-moz-animation: cssload-rotate-one 1.15s linear infinite;
-		border-bottom: 5px solid rgba(255,161,21,1);
+	.cssload-ball_1
+	{
+		background-color:rgb(203,32,37);
+		top:0; left:0;
 	}
-
-	.cssload-inner.cssload-two {
-		right: 0%;
-		top: 0%;
-		animation: cssload-rotate-two 1.15s linear infinite;
-		-o-animation: cssload-rotate-two 1.15s linear infinite;
-		-ms-animation: cssload-rotate-two 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-two 1.15s linear infinite;
-		-moz-animation: cssload-rotate-two 1.15s linear infinite;
-		border-right: 5px solid rgba(255,161,21,1);
+	.cssload-ball_2
+	{
+		background-color:rgb(248,179,52);
+		top:0; left:23px;
 	}
-
-	.cssload-inner.cssload-three {
-		right: 0%;
-		bottom: 0%;
-		animation: cssload-rotate-three 1.15s linear infinite;
-		-o-animation: cssload-rotate-three 1.15s linear infinite;
-		-ms-animation: cssload-rotate-three 1.15s linear infinite;
-		-webkit-animation: cssload-rotate-three 1.15s linear infinite;
-		-moz-animation: cssload-rotate-three 1.15s linear infinite;
-		border-top: 5px solid rgba(255,161,21,1);
+	.cssload-ball_3
+	{
+		background-color:rgb(0,160,150);
+		top:23px; left:0;
 	}
-
-
-
-
-
-
-
-	@keyframes cssload-rotate-one {
-		0% {
-			transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-		}
-
-		100% {
-			transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-		}
+	.cssload-ball_4
+	{
+		background-color:rgb(151,191,13);
+		top:23px; left:23px;
 	}
-
-	@-o-keyframes cssload-rotate-one {
-		0% {
-			-o-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-		}
-
-		100% {
-			-o-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-		}
+	
+	
+	
+	
+	
+	@keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
 	}
-
-	@-ms-keyframes cssload-rotate-one {
-		0% {
-			-ms-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-		}
-
-		100% {
-			-ms-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-		}
+	
+	@-o-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
 	}
-
-	@-webkit-keyframes cssload-rotate-one {
-		0% {
-			-webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-		}
-
-		100% {
-			-webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-		}
+	
+	@-ms-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
 	}
-
-	@-moz-keyframes cssload-rotate-one {
-		0% {
-			-moz-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
-		}
-
-		100% {
-			-moz-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
-		}
+	
+	@-webkit-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
 	}
-
-	@keyframes cssload-rotate-two {
-		0% {
-			transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-		}
-
-		100% {
-			transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-		}
+	
+	@-moz-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
 	}
-
-	@-o-keyframes cssload-rotate-two {
-		0% {
-			-o-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-		}
-
-		100% {
-			-o-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-		}
+	
+	@keyframes cssload-animball_two
+	{
+		0%{transform:rotate(0deg) scale(1);}
+		50%{transform:rotate(360deg) scale(1.3);}
+		100%{transform:rotate(720deg) scale(1);}
 	}
-
-	@-ms-keyframes cssload-rotate-two {
-		0% {
-			-ms-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-		}
-
-		100% {
-			-ms-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-		}
+	
+	@-o-keyframes cssload-animball_two
+	{
+		0%{-o-transform:rotate(0deg) scale(1);}
+		50%{-o-transform:rotate(360deg) scale(1.3);}
+		100%{-o-transform:rotate(720deg) scale(1);}
 	}
-
-	@-webkit-keyframes cssload-rotate-two {
-		0% {
-			-webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-		}
-
-		100% {
-			-webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-		}
+	
+	@-ms-keyframes cssload-animball_two
+	{
+		0%{-ms-transform:rotate(0deg) scale(1);}
+		50%{-ms-transform:rotate(360deg) scale(1.3);}
+		100%{-ms-transform:rotate(720deg) scale(1);}
 	}
-
-	@-moz-keyframes cssload-rotate-two {
-		0% {
-			-moz-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
-		}
-
-		100% {
-			-moz-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
-		}
+	
+	@-webkit-keyframes cssload-animball_two
+	{
+		0%{-webkit-transform:rotate(0deg) scale(1);}
+		50%{-webkit-transform:rotate(360deg) scale(1.3);}
+		100%{-webkit-transform:rotate(720deg) scale(1);}
 	}
-
-	@keyframes cssload-rotate-three {
-		0% {
-			transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-		}
-
-		100% {
-			transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-		}
-	}
-
-	@-o-keyframes cssload-rotate-three {
-		0% {
-			-o-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-		}
-
-		100% {
-			-o-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-		}
-	}
-
-	@-ms-keyframes cssload-rotate-three {
-		0% {
-			-ms-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-		}
-
-		100% {
-			-ms-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-		}
-	}
-
-	@-webkit-keyframes cssload-rotate-three {
-		0% {
-			-webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-		}
-
-		100% {
-			-webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-		}
-	}
-
-	@-moz-keyframes cssload-rotate-three {
-		0% {
-			-moz-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
-		}
-
-		100% {
-			-moz-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
-		}
+	
+	@-moz-keyframes cssload-animball_two
+	{
+		0%{-moz-transform:rotate(0deg) scale(1);}
+		50%{-moz-transform:rotate(360deg) scale(1.3);}
+		100%{-moz-transform:rotate(720deg) scale(1);}
 	}
 </style>

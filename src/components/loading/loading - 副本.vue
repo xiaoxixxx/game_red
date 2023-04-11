@@ -1,20 +1,11 @@
 <template>
 	<div class="loader" v-if="loading">
-		<div class="loader-inner">
-			<div class="loader-line-wrap">
-				<div class="loader-line"></div>
-			</div>
-			<div class="loader-line-wrap">
-				<div class="loader-line"></div>
-			</div>
-			<div class="loader-line-wrap">
-				<div class="loader-line"></div>
-			</div>
-			<div class="loader-line-wrap">
-				<div class="loader-line"></div>
-			</div>
-			<div class="loader-line-wrap">
-				<div class="loader-line"></div>
+		<div align="center" class="cssload-fond">
+			<div class="cssload-container-general">
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_1"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_2"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_3"> </div></div>
+					<div class="cssload-internal"><div class="cssload-ballcolor cssload-ball_4"> </div></div>
 			</div>
 		</div>
 	</div>
@@ -39,85 +30,131 @@
 	    z-index: 99999;
 	}
 	
-	.loader-inner {
-	    bottom: 0;
-	    height: 60px;
-	    left: 0;
-	    margin: auto;
-	    position: absolute;
-	    right: 0;
-	    top: 0;
-	    width: 100px;
+	.cssload-fond{
+		position:relative;
+		margin: auto;
 	}
 	
-	.loader-line-wrap {
-	    animation: 
-			spin 2000ms cubic-bezier(.175, .885, .32, 1.275) infinite
-		;
-	    box-sizing: border-box;
-	    height: 50px;
-	    left: 0;
-	    overflow: hidden;
-	    position: absolute;
-	    top: 0;
-	    transform-origin: 50% 100%;
-	    width: 100px;
+	.cssload-container-general
+	{
+		animation:cssload-animball_two 1.15s infinite;
+			-o-animation:cssload-animball_two 1.15s infinite;
+			-ms-animation:cssload-animball_two 1.15s infinite;
+			-webkit-animation:cssload-animball_two 1.15s infinite;
+			-moz-animation:cssload-animball_two 1.15s infinite;
+		width:43px; height:43px;
 	}
-	.loader-line {
-	    border: 4px solid transparent;
-	    border-radius: 100%;
-	    box-sizing: border-box;
-	    height: 100px;
-	    left: 0;
-	    margin: 0 auto;
-	    position: absolute;
-	    right: 0;
-	    top: 0;
-	    width: 100px;
+	.cssload-internal
+	{
+		width:43px; height:43px; position:absolute;
 	}
-	.loader-line-wrap:nth-child(1) { animation-delay: -50ms; }
-	.loader-line-wrap:nth-child(2) { animation-delay: -100ms; }
-	.loader-line-wrap:nth-child(3) { animation-delay: -150ms; }
-	.loader-line-wrap:nth-child(4) { animation-delay: -200ms; }
-	.loader-line-wrap:nth-child(5) { animation-delay: -250ms; }
-	
-	.loader-line-wrap:nth-child(1) .loader-line {
-	    border-color: hsl(0, 80%, 60%);
-	    height: 90px;
-	    width: 90px;
-	    top: 7px;
+	.cssload-ballcolor
+	{
+		width: 19px;
+		height: 19px;
+		border-radius: 50%;
 	}
-	.loader-line-wrap:nth-child(2) .loader-line {
-	    border-color: hsl(60, 80%, 60%);
-	    height: 76px;
-	    width: 76px;
-	    top: 14px;
+	.cssload-ball_1, .cssload-ball_2, .cssload-ball_3, .cssload-ball_4
+	{
+		position: absolute;
+		animation:cssload-animball_one 1.15s infinite ease;
+			-o-animation:cssload-animball_one 1.15s infinite ease;
+			-ms-animation:cssload-animball_one 1.15s infinite ease;
+			-webkit-animation:cssload-animball_one 1.15s infinite ease;
+			-moz-animation:cssload-animball_one 1.15s infinite ease;
 	}
-	.loader-line-wrap:nth-child(3) .loader-line {
-	    border-color: hsl(120, 80%, 60%);
-	    height: 62px;
-	    width: 62px;
-	    top: 21px;
+	.cssload-ball_1
+	{
+		background-color:rgb(203,32,37);
+		top:0; left:0;
 	}
-	.loader-line-wrap:nth-child(4) .loader-line {
-	    border-color: hsl(180, 80%, 60%);
-	    height: 48px;
-	    width: 48px;
-	    top: 28px;
+	.cssload-ball_2
+	{
+		background-color:rgb(248,179,52);
+		top:0; left:23px;
 	}
-	.loader-line-wrap:nth-child(5) .loader-line {
-	    border-color: hsl(240, 80%, 60%);
-	    height: 34px;
-	    width: 34px;
-	    top: 35px;
+	.cssload-ball_3
+	{
+		background-color:rgb(0,160,150);
+		top:23px; left:0;
+	}
+	.cssload-ball_4
+	{
+		background-color:rgb(151,191,13);
+		top:23px; left:23px;
 	}
 	
-	@keyframes spin {
-	    0%, 15% {
-			transform: rotate(0);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
+	
+	
+	
+	
+	@keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
+	}
+	
+	@-o-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
+	}
+	
+	@-ms-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
+	}
+	
+	@-webkit-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
+	}
+	
+	@-moz-keyframes cssload-animball_one
+	{
+		0%{ position: absolute;}
+		50%{top:12px; left:12px; position: absolute;opacity:0.5;}
+		100%{ position: absolute;}
+	}
+	
+	@keyframes cssload-animball_two
+	{
+		0%{transform:rotate(0deg) scale(1);}
+		50%{transform:rotate(360deg) scale(1.3);}
+		100%{transform:rotate(720deg) scale(1);}
+	}
+	
+	@-o-keyframes cssload-animball_two
+	{
+		0%{-o-transform:rotate(0deg) scale(1);}
+		50%{-o-transform:rotate(360deg) scale(1.3);}
+		100%{-o-transform:rotate(720deg) scale(1);}
+	}
+	
+	@-ms-keyframes cssload-animball_two
+	{
+		0%{-ms-transform:rotate(0deg) scale(1);}
+		50%{-ms-transform:rotate(360deg) scale(1.3);}
+		100%{-ms-transform:rotate(720deg) scale(1);}
+	}
+	
+	@-webkit-keyframes cssload-animball_two
+	{
+		0%{-webkit-transform:rotate(0deg) scale(1);}
+		50%{-webkit-transform:rotate(360deg) scale(1.3);}
+		100%{-webkit-transform:rotate(720deg) scale(1);}
+	}
+	
+	@-moz-keyframes cssload-animball_two
+	{
+		0%{-moz-transform:rotate(0deg) scale(1);}
+		50%{-moz-transform:rotate(360deg) scale(1.3);}
+		100%{-moz-transform:rotate(720deg) scale(1);}
 	}
 </style>

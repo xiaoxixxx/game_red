@@ -13,7 +13,8 @@
 					</view>
 				</view>
 				<view class="circle center" :class="actInd == 0?'actChoose':'noChoose'">
-					<nut-icon name="checklist" v-if="actInd == 0" :color="store.$state.contentColor"></nut-icon>
+					<IconFont name="Check" v-if="actInd == 0" class="phoneCheck animate__animated animate__fadeIn "
+						color="#f4453f"></IconFont>
 				</view>
 			</view>
 
@@ -25,7 +26,8 @@
 					</view>
 				</view>
 				<view class="circle center" :class="actInd == 1?'actChoose':'noChoose'">
-					<nut-icon name="checklist" v-if="actInd == 1" :color="store.$state.contentColor"></nut-icon>
+					<IconFont name="Check" v-if="actInd == 1" class="phoneCheck animate__animated animate__fadeIn "
+						color="#f4453f"></IconFont>
 				</view>
 			</view>
 			
@@ -65,7 +67,7 @@
 		transition:'.1s linear all'
 	}
 	const noChoStyle = {
-		background: "#fff",
+		background: "#ccc",
 		color: "#000"
 	}
 	const actInd = ref(0)
@@ -112,7 +114,10 @@
 	})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	page{
+		background-color: #f5f5f5;
+	}
 	.items {
 		height: 130rpx;
 		padding: 0 50rpx;

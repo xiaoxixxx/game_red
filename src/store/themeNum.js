@@ -6,7 +6,7 @@ export const userStore = defineStore({
 	id: 'themeNum', // 命名，唯一
 	state: () => {
 		return {
-			contentColor: '#16B739',
+			contentColor: 'linear-gradient(90deg, #cd0103, #f64841)',
 			btnDis: "#ccc",
 			secondColor: "",
 			imgObj: {

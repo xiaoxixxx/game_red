@@ -25,7 +25,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -66,11 +66,11 @@
 			}
 		}).then(res => {
 			showLoading.value.loading = false
-			Toast.text(t('setting.s_s3'));
+			showToast.text(t('setting.s_s3'));
 			history.back()
 		}).catch(err => {
 			showLoading.value.loading = false
-			Toast.text(err.message);
+			showToast.text(err.message);
 		})
 		showLoading.value.loading = false
 	}

@@ -8,10 +8,11 @@
 	export default {
 		mixins: [pageAnimation],
 		onLaunch: function() {
-
+			
 		},
 		onShow: function() {
 			// console.log('App Show')
+
 
 		},
 		onHide: function() {
@@ -39,17 +40,23 @@
 	}
 
 	page {
-		font-family:Avenir,Helvetica,Arial,sans-serif;
+		font-family: Avenir, Helvetica, Arial, sans-serif;
 		// background-color: #EAEFF0;
-		color: #000;
+		color: #2c3e50;
 		font-size: 30rpx;
 		animation: .3s linear all;
-		text-transform: capitalize;
+		// text-transform: capitalize;
 	}
 
 	.secondClo {
 		font-weight: bold;
 		color: #2A5F64;
+	}
+
+	.maskContent {
+		img {
+			width: 100%;
+		}
 	}
 
 	.inp {
@@ -74,49 +81,64 @@
 		color: #000 !important;
 	}
 
-	
 
-	.nut-noticebar-page {
-		background: rgba(0, 0, 0, 0.18) !important;
-		border-radius: 20rpx !important;
+
+	.nut-noticebar__page {
+		border-radius: 10rpx !important;
 		height: 80rpx !important;
+		padding-left: 10rpx !important;
+		// .left-icon {
+		// 	margin: 0 20rpx 0 0 !important;
+		// }
+	}
 
-		.left-icon {
-			margin: 0 20rpx 0 0 !important;
+	.nut-input-number {
+		input {
+			border: none !important;
+			margin: 0 10rpx;
 		}
 	}
 
 	uni-page {
 
-		display: webkit-box;
-		overflow: auto;
-		paddingb-bottom: 10rpx;
-		margin-bottom: -10rpx; // overflow: hidden;
-		font-family: SF UI Text;
+		// display: webkit-box;
+		// overflow: auto;
+		// paddingb-bottom: 10rpx;
+		// margin-bottom: -10rpx; // overflow: hidden;
+		// font-family: SF UI Text;
 	}
 
-	::-webkit-scrollbar {
-		display: none;
-	}
+::-webkit-scrollbar{
+	scrollbar-face-color: #B3DDF7;
+	scrollbar-shadow-color: #B3DDF7;
+	scrollbar-highlight-color: #B3DDF7;
+	scrollbar-3dlight-color: #EBEBE4;
+	scrollbar-darkshadow-color: #EBEBE4;
+	scrollbar-track-color: #F4F4F0;
+	scrollbar-arrow-color: #000000;
+}
+
 	// 签名大小
 	.nut-signature .nut-signature-inner {
 		height: 70vh !important;
 	}
-	.sign{
-		.nut-button{
-			width: 90% !important ;
+
+	.sign {
+		.nut-button {
+			width: 90% !important;
 			margin: 20rpx 5% !important;
 			height: 100rpx;
 			border-radius: 20rpx;
 		}
 	}
-	
-	.desc{
-		img{
+
+	.desc {
+		img {
 			width: 100% !important;
 		}
 	}
-	.nut-button--primary{
+
+	.nut-button--primary {
 		background-color: rgb(22, 183, 57) !important;
 	}
 </style>

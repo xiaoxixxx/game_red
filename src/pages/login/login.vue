@@ -1,56 +1,84 @@
 <template>
-	<view class="  l_bg">
+	<view>
 
 		<view class="topBox">
-			<view class="">
-				<image src="../../static/images/back.png" mode="widthFix" style="width: 54rpx;height: 54rpx;"></image>
-			</view>
-			<view class="mt80 between" style="">
-				<text></text>
-				<image src="../../static/images/headlogo.png" mode="widthFix" style="width: 240rpx;height: 60rpx;">
-				</image>
+			<view class=" pt30 between">
+				<image src="../../static/images/back.png" mode="widthFix" style="width: 54rpx;height: 54rpx;"
+					@click="back"></image>
 			</view>
 		</view>
 
-		<view class="loginBox">
-			<view class="text_center f40 text_bold title">Log in</view>
-			<view class="mt40">
-				<view class="color9">
-					Phone number format:+91
+		<view class="  l_bg loginBox">
+			<view class="pdlr40">
+				<view class="pt30  text_bold text_center title f40">
+					{{t('login.l_b1')}}
 				</view>
-
-			</view>
-			<view class="mt30">
-				<view class="loginInp flex col_center">
-					<view class="center" style="color: #f4453f;">
-						<image src="@/static/images/phone.png" mode="widthFix" style="width:25rpx ; height: 40rpx;">
-						</image>
-						<text class="pl10"> +91</text>
+				<view class="mt60">
+					<view class="flex between l_inpS l_inpBg pdlr30 ">
+						<view class=" center l_inpS pdlr20 " style="width:100rpx" @click="showPicker = true">
+							<text class=" f22" style="width: 70%;"> {{country_code.country_code}}</text>
+							<IconFont name="triangle-down" color="#f4453f"></IconFont>
+						</view>
+						<view class="   flex col_center pl20" style="width:100%;height: 100%;">
+							<input type="text" :placeholder="t('login.l_l1')" style="color:#333"
+								v-model="loginForm.phone">
+							<IconFont name="Check" v-if="phoneRegFlag"
+								class="phoneCheck animate__animated animate__fadeIn " color="#f4453f"></IconFont>
+						</view>
 					</view>
-					<input type="number" placeholder="Phone" v-model="loginForm.phone" style="height: 100%;padding-left: 10rpx;">
-				</view>
 
-				<view class="loginInp flex col_center mt40">
-					<view class="center" style="color: #f4453f;">
-						<image src="@/static/images/password.png" mode="widthFix" style="width:25rpx ; height: 40rpx;">
-						</image>
+					<view class="flex between l_inpS mt40 l_inpBg pdlr30">
+						<view>
+							<image src="@/static/images/password.png" style="width:40rpx ; height: 40rpx;">
+							</image>
+						</view>
+						<view class="l_inpS  flex col_center " style="width:100%">
+							<input class="ml39" :type="showPwd?'password':'text'" :placeholder="t('login.l_l2')"
+								style="color:#333" v-model="loginForm.password">
+						</view>
+						<image src="@/static/themeNum1/l_icon/eyeOpen.png" style="width:40rpx;height:40rpx"
+							@click="showPwd = !showPwd" v-if="!showPwd"></image>
+						<image src="@/static/themeNum1/l_icon/eyeClose.png" style="width:40rpx;height:40rpx"
+							@click="showPwd = !showPwd" v-if="showPwd"></image>
 					</view>
-					<input v-model="loginForm.password" type="number" placeholder="Password" style="height: 100%;padding-left: 20rpx;">
-				</view>
-			</view>
 
-			<view class="mt60 center" style="flex-direction: column;">
-				<view class="logBtns text_bold">
-					log in
-				</view>
-				<view class="center error mt10 text_bold pdtb20">
-					<view class="pr20" @click="jumpPage('./register')">register</view>
-					<view style="height: 40rpx;width: 2rpx; background: #f4453f;"></view>
-					<view class="pl20"  @click="jumpPage('./resetPwd')" > Retrieve Password </view>
+					<view class="mt30 f24 flex" :style="{color:store.$state.contentColor}"
+						style="flex-direction: row-reverse;">
+						<view @click="forgetHandle">
+							{{t('login.l_l6')}}
+						</view>
+					</view>
+
+
+
+
+					<view class=" center l_inpS inpBtn mt40  pdlr30 text_white f32" style="margin-top:114rpx"
+						:style="{background:store.$state.contentColor}" @click="loginHandle">
+						{{t('login.l_b1')}}
+					</view>
+
+					<view class=" center l_inpS mt40 inpBtn  pdlr30 text_white mt40 f32 signBtn">
+						<view @click="jumpPage('./register')" style="height: 100%;width: 100%;" class="center">
+							{{t('login.l_b2')}}
+						</view>
+					</view>
 				</view>
 			</view>
+			<nut-popup position="right" :style="{ width: '40%', height: '100%' }" v-model:visible="showPicker">
+				<view class="inpSearch  ">
+					<input type="text" v-model="inpSeach" @tap.stop="searchHandle" @input="searchHandle" style="">
+
+					<IconFont name="search" style="margin-right: 40rpx;" size="20" color="#f64841"></IconFont>
+
+				</view>
+				<view class="listItem2" v-for="(item,index) in searchCode" :style="index == currentInd?choStyle:''"
+					@click="confirm(item,index)">
+					{{item.text}} {{item.name}}
+				</view>
+			</nut-popup>
+			<Loading ref="showLoading"></Loading>
 		</view>
-		<Loading ref="showLoading"></Loading>
+
 	</view>
 </template>
 
@@ -64,7 +92,7 @@
 		onLoad
 	} from "@dcloudio/uni-app";
 	import {
-		Toast
+		showToast 
 	} from '@nutui/nutui';
 	import {
 		computed,
@@ -190,11 +218,11 @@
 		let tempReg = country_code.value.preg.replace('/', '').replace('/', '')
 		let phoneReg = new RegExp(tempReg);
 		if (!phoneReg.test(loginForm.value.phone)) {
-			Toast.text(t('login.l_l3'))
+			showToast .text(t('login.l_l3'))
 			return false
 		}
 		if (loginForm.value.password.length < 6 || loginForm.value.password.length > 24) {
-			Toast.text(t('login.l_l4'))
+			showToast .text(t('login.l_l4'))
 			return false
 		}
 		showLoading.value.loading = true
@@ -211,7 +239,16 @@
 			data: loginForm.value
 		}).then(res => {
 			showLoading.value.loading = false
-			Toast.text(t('login.l_l5'))
+			showToast .text(t('login.l_l5'))
+			if(sessionStorage.getItem('link')){
+				let key = sessionStorage.getItem('link')
+				uni.clearStorage()
+				uni.setStorageSync('token', res.accessToken)
+				uni.navigateTo({
+					url:'../linkEgg/linkEgg?key='+key
+				})
+				return false
+			}
 			uni.setStorageSync('token', res.accessToken)
 			setTimeout(() => {
 				uni.navigateTo({
@@ -261,7 +298,7 @@
 	}
 
 	// 终于可以用了
-	onShow(() => {
+	onMounted(() => {
 		let curLang = uni.getStorageSync('lang')
 		uni.clearStorage()
 		currentInd.value = 0
@@ -286,10 +323,15 @@
 </script>
 
 <style lang="scss" scoped>
-	.l_bg {
-		min-height: 100vh;
-		background-position: top;
-		// padding: 20rpx 30rpx;
+	.listItem2 {
+		font-size: 30rpx;
+		padding: 10rpx 20rpx;
+		margin: 10rpx 0;
+		height: 100rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 1rpx solid #eee;
 	}
 
 	.topBox {
@@ -297,6 +339,8 @@
 		padding: 20rpx 30rpx;
 		background: url('@/static/images/login_banner.png') no-repeat 100%/100%;
 	}
+
+
 
 	.loginBox {
 		border-radius: 30rpx 30rpx 0 0;
@@ -309,17 +353,14 @@
 		color: #750001;
 	}
 
-	.loginInp {
+	.l_inpBg {
 		border: 5rpx solid #faa09d;
 		border-radius: 20rpx;
 		padding: 5rpx 20rpx;
 	}
 
-	.logBtns {
-		background-color: rgb(92, 186, 71);
-		color: #fff;
-		padding: 15rpx 120rpx;
-		border-radius: 40rpx;
-		box-shadow: 0 0 0.21333rem 0.02667rem rgba(92, 186, 71, .72);
+	.signBtn{
+		border: 5rpx solid #faa09d;
+		color: #f4453f;
 	}
 </style>

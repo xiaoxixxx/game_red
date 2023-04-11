@@ -60,7 +60,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -88,15 +88,15 @@
 
 	const saveHandle = () => {
 		if (!formData.value.old_password) {
-			Toast.text(t('setting.s_p6'));
+			showToast.text(t('setting.s_p6'));
 			return false
 		}
 		if (formData.value.password.length < 6 || formData.value.password.length > 24) {
-			Toast.text(t('setting.s_p7'));
+			showToast.text(t('setting.s_p7'));
 			return false
 		}
 		if (formData.value.password !== formData.value.password2) {
-			Toast.text(t('setting.s_p8'));
+			showToast.text(t('setting.s_p8'));
 			return false
 		}
 		showLoading.value.loading = true
@@ -111,12 +111,12 @@
 			data: formData.value
 		}).then(res => {
 			showLoading.value.loading = false
-			Toast.text(t('setting.s_s3'));
+			showToast.text(t('setting.s_s3'));
 			history.back()
 
 		}).catch(err => {
 			showLoading.value.loading = false
-			Toast.text(err.message);
+			showToast.text(err.message);
 		})
 	}
 </script>

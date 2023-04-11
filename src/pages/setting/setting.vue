@@ -23,7 +23,7 @@
 					</view>
 		
 					<view class="between">
-						<view style="border: 1rpx solid;" :style="{'border-color':store.$state.contentColor,color:store.$state.contentColor}">{{t('all.a_c1')}}</view>
+						<view style="border: 1rpx solid #cd0103;" :style="{'color':'#cd0103'}">{{t('all.a_c1')}}</view>
 						<view class="text_white" :style="{background:store.$state.contentColor}" @click="confirmHandle"> {{t('all.a_c2')}}
 						</view>
 					</view>
@@ -107,6 +107,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	box-shadow: 0 10rpx 20rpx 5rpx #ccc;
 }
 
 	.wrapper {

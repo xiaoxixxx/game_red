@@ -15,21 +15,12 @@ let COUNTRY = {
 
 // /api
 if (dev == 1) {
-	COUNTRY.url='neapi.aamocb.com',
+	COUNTRY.url='hldev.task777.com',
 	COUNTRY.lang="en",
 	COUNTRY.title="",
 	COUNTRY.icon=""
 }
 
-
-// if (COUNTRY.themeNum == 1) {
-// 	store.setContentColor(themeNum1.contentColor)
-// 	store.setSecondColor(themeNum1.secondColor)
-// 	store.setImgObj(themeNum1.imgObj)
-// 	store.setMy(themeNum1.my)
-// 	store.setWr(themeNum1.wr)
-// 	store.setTask(themeNum1.task)
-// }
 
 COUNTRY.HOST = `https://${COUNTRY.url}` + '/api/'
 

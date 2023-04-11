@@ -1,7 +1,7 @@
 <template>
 	<view class="between" :style="{background:store.$state.contentColor}" style="height: 88rpx; padding: 0 31rpx;">
-		<view style="width: 32rpx;height: 30rpx;">
-			<image :src="store.$state.imgObj.backIcon" style="width: 100%;height: 100%;" @click="back"></image>
+		<view style="width: 48rpx;height: 48rpx;">
+			<image src="/static/images/back.png" style="width: 100%;height: 100%;" @click="back"></image>
 		</view>
 		<view class="f36  text_white textHiddenOne center" style="font-weight: 500;width: 60%;height: 100%; ">{{title}}</view>
 		<view style="width: 32rpx;height: 34rpx;">

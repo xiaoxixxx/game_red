@@ -2,59 +2,100 @@
 	<view class="  l_bg">
 		<view class="between nav" style="padding: 20rpx 30rpx;">
 			<image @click="methods.back" src="../../static/images/back.png" mode="widthFix" style="width: 54rpx;height: 54rpx;"></image>
-			<view class="text_white"> Register </view>
-			<view></view>
-			<!-- <image src="../../static/images/audio.webp" ode="widthFix" style="width: 54rpx;height: 54rpx;"></image> -->
-			<!-- <image src="../../static/images/audio.png" mode="widthFix" style="width: 54rpx;height: 54rpx;"></image> -->
+			<view class="text_white"> {{t('login.l_b2')}} </view>
+			<view style="width: 54rpx;height: 54rpx;"></view>
 		</view>
-
-		<view class="loginBox">
-			<view class="mt20">
-				<view class="color9">
-					Phone number format:+91
-				</view>
-
-			</view>
-			<view class="mt30">
-				<view class="loginInp flex col_center">
-					<view class="center" style="color: #f4453f;">
-						<image src="@/static/images/phone.png" mode="widthFix" style="width:25rpx ; height: 40rpx;">
-						</image>
-						<text class="pl10"> +91</text>
+		<view class="pdlr70">
+		
+			<view style="margin-top:114rpx">
+				<view class="flex between l_inpS l_inpBg pdlr30 ">
+					<view class=" center l_inpS pdlr20 " style="width:100rpx" @click="showPicker = true">
+						<text class=" f22" style="width: 70%;"> {{country_code.country_code}}</text>
+						<IconFont name="triangle-down" color="#f4453f"></IconFont>
 					</view>
-					<input type="number" placeholder="Phone" style="height: 100%;padding-left: 10rpx;">
+					<view class="   flex col_center pl20" style="width:100%;height: 100%;">
+						<input type="text" :placeholder="t('login.l_l1')" style="color:#333"
+							v-model="regisForm.phone">
+						<IconFont name="Check" v-if="phoneRegFlag"
+							class="phoneCheck animate__animated animate__fadeIn " color="#f4453f"></IconFont>
+					</view>
 				</view>
 
-			
+				<view class="flex between l_inpS mt40 l_inpBg pdlr30">
+					<view>
+						<image src="@/static/themeNum1/l_icon/pwd.png" style="width:40rpx;height:40rpx"></image>
+					</view>
+					<view class="l_inpS  flex col_center " style="width:100%">
+						<input class="ml39" :type="showPwd?'password':'text'" :placeholder="t('login.l_l2')"
+							style="color:#333" v-model="regisForm.password">
+					</view>
+					<image src="@/static/themeNum1/l_icon/eyeOpen.png" style="width:40rpx;height:40rpx"
+						@click="showPwd = !showPwd" v-if="!showPwd"></image>
+					<image src="@/static/themeNum1/l_icon/eyeClose.png" style="width:40rpx;height:40rpx"
+						@click="showPwd = !showPwd" v-if="showPwd"></image>
+				</view>
 
-				<view class="loginInp flex col_center mt40">
-					<view class="center" style="color: #f4453f;">
-						<image src="@/static/images/password.png" mode="widthFix" style="width:25rpx ; height: 40rpx;">
-						</image>
+				<view class="flex between l_inpS mt40 l_inpBg pdlr30">
+					<view>
+						<image src="@/static/themeNum1/l_icon/pwd.png" style="width:40rpx;height:40rpx"></image>
 					</view>
-					<input type="number" placeholder="Password" style="height: 100%;padding-left: 20rpx;">
-				</view>
-				
-				<view class="loginInp flex col_center mt40">
-					<view class="center" style="color: #f4453f;">
-						<image src="@/static/images/invite.png" mode="widthFix" style="width:25rpx ; height: 40rpx;">
-						</image>
+					<view class="l_inpS  flex col_center " style="width:100%">
+						<input class="ml39" :type="showPwd?'password':'text'" :placeholder="t('login.l_r1')"
+							style="color:#333" v-model="regisForm.password2">
 					</view>
-					<input type="number" placeholder="Referral code" style="height: 100%;padding-left: 20rpx;">
+					<image src="@/static/themeNum1/l_icon/eyeOpen.png" style="width:40rpx;height:40rpx"
+						@click="showPwd = !showPwd" v-if="!showPwd"></image>
+					<image src="@/static/themeNum1/l_icon/eyeClose.png" style="width:40rpx;height:40rpx"
+						@click="showPwd = !showPwd" v-if="showPwd"></image>
 				</view>
-			</view>
-			
-			<view class="mt60 flex">
-				 <nut-checkbox v-model="checkbox1" label="复选框" ></nut-checkbox>
-				I agree  <text class="pl20 error">Privacy Policy</text>
-			</view>
-			
-			<view class="mt60 center" style="flex-direction: column;">
-				<view class="logBtns text_bold">
-					create command
+
+
+				<view class="flex between l_inpS  mt40" v-if="smsFlag">
+
+
+					<view class=" l_inpS l_inpBg flex col_center pdlr50" style="width:100%">
+						<!-- <image src="@/static/themeNum1/country/en.png" mode="widthFix" style="width:43rpx;29rpx"></image> -->
+						<input type="text" :placeholder="t('login.l_r2')" style="color:#333"
+							v-model="regisForm.sms_code">
+					</view>
+
+					<view class="l_inpBg center  l_inpS pdlr20  ml20 text_white" style="width:220rpx;"
+						:style="{background:store.$state.contentColor}" v-if="!hasSend" @click="sendHandle">
+						OTP
+					</view>
+
+					<view class="l_inpBg center  l_inpS pdlr20  ml20 text_white" style="width:220rpx;"
+						:style="{background:store.$state.contentColor}" v-if="else" @click="sendHandle">
+						{{hasSecond}}s
+					</view>
+				</view>
+
+				<view class="flex between l_inpS mt40 l_inpBg pdlr30">
+					<view>
+						<image src="@/static/themeNum1/l_icon/invite.png" style="width:40rpx;height:40rpx"></image>
+					</view>
+					<view class="l_inpS  flex col_center " style="width:100%">
+						<input class="ml39" type="text" :placeholder="t('login.l_r3')" style="color:#333"
+							v-model="regisForm.invite_code" :disabled="!canInpCode">
+					</view>
+				</view>
+
+				<view class=" center l_inpS inpBtn mt40  pdlr30 text_white f32" style="margin-top:112rpx"
+					:style="{background:store.$state.contentColor}" @click="methods.regisHandle(methods.regisHandle1)">
+					{{t('login.l_b2')}}
 				</view>
 			</view>
 		</view>
+		<nut-popup position="right" :style="{ width: '40%', height: '100%' }" v-model:visible="showPicker">
+			<view class="inpSearch  ">
+				<input type="text" v-model="inpSeach" @tap.stop="searchHandle" @input="searchHandle" style="">
+				<IconFont name="search" style="margin-right: 40rpx;" size="20" color="#f64841"></IconFont>
+			</view>
+			<view class="listItem2" v-for="(item,index) in searchCode" :style="index == currentInd?choStyle:''"
+				@click="confirm(item,index)">
+				{{item.text}} {{item.name}}
+			</view>
+		</nut-popup>
 		<Loading ref="showLoading"></Loading>
 	</view>
 </template>
@@ -70,7 +111,7 @@
 		onHide
 	} from "@dcloudio/uni-app";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		useI18n
@@ -81,7 +122,6 @@
 	} = useI18n();
 
 	const showPwd = ref(true)
-	const checkbox1 = ref(false)
 	const jumpPage = url => {
 		uni.navigateTo({
 			url
@@ -170,7 +210,7 @@
 		let tempReg = country_code.value.preg.replace('/', '').replace('/', '')
 		let phoneReg = new RegExp(tempReg);
 		if (!phoneReg.test(regisForm.value.phone)) {
-			Toast.text(t('login.l_l3'))
+			showToast.text(t('login.l_l3'))
 			return false
 		}
 
@@ -190,9 +230,9 @@
 		}).then(res => {
 			startTimer()
 			hasSend.value = true
-			Toast.text(t('login.l_r8'))
+			showToast.text(t('login.l_r8'))
 		}).catch(err => {
-			Toast.text(err.message)
+			showToast.text(err.message)
 		})
 	}
 	const openPicker = () => {
@@ -253,26 +293,26 @@
 			let tempReg = country_code.value.preg.replace('/', '').replace('/', '')
 			let phoneReg = new RegExp(tempReg);
 			if (!phoneReg.test(regisForm.value.phone)) {
-				Toast.text(t('login.l_l3'))
+				showToast.text(t('login.l_l3'))
 
 				return false
 			}
 
 			if (regisForm.value.password.length < 6 || regisForm.value.password2.length < 6 || regisForm.value.password
 				.length > 24 || regisForm.value.password2.length > 24) {
-				Toast.text(t('login.l_l4'))
+				showToast.text(t('login.l_l4'))
 				return false
 			}
 			if (regisForm.value.password !== regisForm.value.password2) {
-				Toast.text(t('login.l_r4'))
+				showToast.text(t('login.l_r4'))
 				return false
 			}
 			if (smsFlag.value && !regisForm.value.sms_code) {
-				Toast.text(t('login.l_r5'))
+				showToast.text(t('login.l_r5'))
 				return false
 			}
 			if (codeFlag.value && !regisForm.value.invite_code) {
-				Toast.text(t('login.l_r6'))
+				showToast.text(t('login.l_r6'))
 				return false
 			}
 			showLoading.value.loading = true
@@ -288,7 +328,16 @@
 				data: regisForm.value
 			}).then(res => {
 				showLoading.value.loading = false
-				Toast.text(t('login.l_r7'))
+				showToast.text(t('login.l_r7'))
+				if(sessionStorage.getItem('link')){
+					let key = sessionStorage.getItem('link')
+					uni.clearStorage()
+					uni.setStorageSync('token', res.accessToken)
+					uni.navigateTo({
+						url:'../linkEgg/linkEgg?key='+key
+					})
+					return false
+				}
 				uni.setStorageSync('token', res.accessToken)
 				setTimeout(() => {
 					uni.navigateTo({
@@ -298,7 +347,7 @@
 
 			}).catch(err => {
 				showLoading.value.loading = false
-				Toast.text(err.message)
+				showToast.text(err.message)
 			})
 
 		},
@@ -376,16 +425,14 @@
 		})
 		searchCode.value = temArr
 	}
-	// 终于可以用了
-	onShow(() => {
-		getSetting()
-	})
+
 	onHide(() => {
 		if (timer.value) {
 			clearInterval(timer.value)
 		}
 	})
 	onMounted(() => {
+			getSetting()
 		showLoading.value.loading = true
 		setTimeout(() => {
 			showLoading.value.loading = false
@@ -418,55 +465,27 @@
 </script>
 
 <style lang="scss" scoped>
-	
-
-	.l_bg {
-		min-height: 100vh;
-		background-position: top;
+	.listItem2 {
+		font-size: 30rpx;
+		padding: 10rpx 20rpx;
+		margin: 10rpx 0;
+		height: 100rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-bottom: 1rpx solid #eee;
 	}
 
-	.topBox {
-		height: 460rpx;
-		padding: 20rpx 30rpx;
-		background: url('@/static/images/login_banner.png') no-repeat 100%/100%;
-	}
 
-	.loginBox {
-		border-radius: 30rpx 30rpx 0 0;
-		padding: 30rpx 50rpx;
-		background-color: #fff;
-	}
-
-	.title {
-		color: #750001;
-	}
-
-	.loginInp {
+	.l_inpBg {
 		border: 5rpx solid #faa09d;
 		border-radius: 20rpx;
 		padding: 5rpx 20rpx;
 	}
 
-	.loginOtp {
-		border: 6rpx solid #faa09d;
-		border-radius: 20rpx;
-		padding-left: 20rpx;
-		height: 80rpx;
-	}
-
 	.logBtns {
-		background-color: rgb(92, 186, 71);
 		color: #fff;
 		padding: 15rpx 120rpx;
 		border-radius: 40rpx;
-		box-shadow: 0 0 0.21333rem 0.02667rem rgba(92, 186, 71, .72);
-	}
-
-	.otp {
-		padding: 0 20rpx;
-		background-color: #ffebeb;
-		height: 100%;
-		line-height: 80rpx;
-		border-radius: 0 15rpx 15rpx 0;
 	}
 </style>

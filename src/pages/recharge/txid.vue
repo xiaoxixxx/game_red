@@ -24,7 +24,9 @@
 					</image>
 				</view>
 				
-				<nut-icon name="close-little"  v-if="showImg" size="15" style="position: absolute; top: -10rpx;left: 180rpx;" @click="clearImg"></nut-icon>
+				<IconFont name="close-little"  v-if="showImg" size="15"
+				 style="position: absolute; top: -10rpx;left: 180rpx;" @click="clearImg"></IconFont>
+			
 			</view>
 
 			<view class=" center l_inpS mt40 l_inpBg pdlr30 text_white mt40 f32" @click="jumpPage('../tabbar/index')"
@@ -42,7 +44,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast,
+		showToast,
 		Locale
 	} from '@nutui/nutui';
 	import enUS from '@nutui/nutui/dist/packages/locale/lang/en-US';
@@ -111,14 +113,14 @@
 				...formData.value
 			}
 		}).then(res => {
-			Toast.text('Success')
+			showToast.text('Success')
 			setTimeout(() => {
 				uni.navigateTo({
 					url: '../tabbar/index'
 				})
 			}, 500)
 		}).catch(err => {
-			Toast.text(err.message)
+			showToast.text(err.message)
 		})
 	}
 	// 终于可以用了
@@ -134,6 +136,8 @@
 	})
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+page{
+		background-color: #f5f5f5;
+	}
 </style>

@@ -2,14 +2,14 @@ import {
 	createI18n
 } from 'vue-i18n'
 import langEn from './en';
-import langES from './es';
-import langPt from './pt';
+import langIn from './in';
+// import langPt from './pt';
 
 
 const messages = {
 	'en': langEn,
-	'es': langES,
-	'pt': langPt,
+	'in': langIn,
+	// 'pt': langPt,
 
 }
 if (!uni.getStorageSync('lang')) {
@@ -22,7 +22,7 @@ if(cur_lang == 'ar'){
 	document.querySelector("html").setAttribute("dir",'rtl')
 }
 
-
+	// locale: uni.getStorageSync('lang') || 'en',
 const i18n = createI18n({
 	globalInjection: true, //全局$t 生效
 	locale: uni.getStorageSync('lang') || 'en',

@@ -18,7 +18,7 @@
 				<input type="text" :placeholder="t('setting.s_b4')" placeholder-class="inpPlaceholder"
 					style="height: 100%;width: 100%;color: #333;" v-model="formData.bank_num">
 			</view>
-			
+
 			<view class="mt55">
 				{{t('setting.s_b5')}}
 			</view>
@@ -26,7 +26,7 @@
 				<input type="text" :placeholder="t('setting.s_b5')" placeholder-class="inpPlaceholder"
 					style="height: 100%;width: 100%;color: #333;" v-model="formData.account_holder">
 			</view>
-			
+
 			<view class="mt55">
 				{{t('setting.s_b6')}}
 			</view>
@@ -34,26 +34,31 @@
 				<input type="text" :placeholder="t('setting.s_b6')" placeholder-class="inpPlaceholder"
 					style="height: 100%;width: 100%;color: #333;" v-model="formData.other_param_1">
 			</view>
-			
+
 			<view class="mt38">
 				<view class="pl14">
-						{{t('setting.s_b7')}}
+					{{t('setting.s_b7')}}
 				</view>
 				<view class="mt34 settingInp">
-					<input  placeholder-class="inpPlaceholder" :placeholder="t('setting.s_b7')" 
-						v-model="formData.phone" style="height: 100%;width: 100%;color: #333;">
+					<input placeholder-class="inpPlaceholder" :placeholder="t('setting.s_b7')" v-model="formData.phone"
+						style="height: 100%;width: 100%;color: #333;">
 				</view>
 			</view>
-			
 
-			<view class="inpBtn center" style="margin-top:180rpx" :style="{background:store.$state.contentColor}" @click="saveHandle">
+
+			<view class="inpBtn center" style="margin-top:180rpx" :style="{background:store.$state.contentColor}"
+				@click="saveHandle">
 				{{t('all.a_c2')}}
 			</view>
 		</view>
-		
-		<nut-picker v-model:visible="show" :text="'text2'" :columns="columns" @confirm="confirm"
-			:cancel-text="'cancel'" :ok-text="'confirm'" />
-			<Loading ref="showLoading"></Loading>
+
+
+
+		<nut-popup position="bottom" v-model:visible="show">
+			<nut-picker :text="'text2'" :columns="columns" @confirm="confirm" :cancel-text="'cancel'"
+				:ok-text="'confirm'" @cancel="show = false" />
+		</nut-popup>
+		<Loading ref="showLoading"></Loading>
 	</view>
 </template>
 
@@ -64,7 +69,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -79,7 +84,7 @@
 	const {
 		t
 	} = useI18n();
-	
+
 	const show = ref(false)
 	const columns = ref([])
 	const showLoading = ref(null)
@@ -88,7 +93,7 @@
 		bank_num: '',
 		account_holder: '',
 		phone: '',
-		other_param_1:""
+		other_param_1: ""
 	})
 	const bName = ref("")
 	const confirm = ({
@@ -99,9 +104,9 @@
 		bName.value = selectedOptions[0].text
 		formData.value.bankId = selectedOptions[0].value
 	}
-	
-	const canEdit  = ref(false)
-	const getData = ()=>{
+
+	const canEdit = ref(false)
+	const getData = () => {
 		request({
 			url: 'user/attribute/bankcard',
 			methods: 'get',
@@ -116,17 +121,17 @@
 				}
 				columns.value = temArr
 			}
-		
+
 			res.bank_card_can_edit == 1 ? canEdit.value = true : canEdit.value = false
-		
+
 			if (res.bankcard) {
 				formData.value.account_holder = res.bankcard.account_holder
 				formData.value.phone = res.bankcard.phone
 				formData.value.bank_num = res.bankcard.bank_num
 				formData.value.bankId = res.bankcard.bankId
-				try{
+				try {
 					formData.value.other_param_1 = res.bankcard.other_param_1
-				}catch(e){
+				} catch (e) {
 					//TODO handle the exception
 				}
 				for (let i in columns.value) {
@@ -137,27 +142,27 @@
 			}
 		})
 	}
-	
-	const saveHandle =()=> {
+
+	const saveHandle = () => {
 		// if (!showTag.value) {
 		// 	return false
 		// }
 		console.log(formData.value);
 		if (!formData.value.bankId) {
-			Toast.text(t('setting.s_b2'));
+			showToast.text(t('setting.s_b2'));
 			return false
 		}
-	
+
 		if (!formData.value.bank_num) {
-			Toast.text(t('setting.s_b4'));
+			showToast.text(t('setting.s_b4'));
 			return false
 		}
 		if (!formData.value.account_holder) {
-			Toast.text(t('setting.s_b5'));
+			showToast.text(t('setting.s_b5'));
 			return false
 		}
 		if (!formData.value.phone) {
-			TToast.text(t('setting.s_b7'));
+			showToast.text(t('setting.s_b7'));
 			return false
 		}
 		showLoading.value.loading = true
@@ -165,23 +170,23 @@
 			saveHandle1()
 		}, 2000)
 	}
-	const saveHandle1 =()=> {
-	
+	const saveHandle1 = () => {
+
 		request({
 			url: 'user/attribute/bankcard',
 			methods: 'post',
 			data: formData.value
 		}).then(res => {
 			showLoading.value.loading = false
-			Toast.text(t('setting.s_s3'));
+			showToast.text(t('setting.s_s3'));
 			history.back()
-	
+
 		}).catch(err => {
 			showLoading.value.loading = false
-			Toast.text(err.message);
+			showToast.text(err.message);
 		})
-	
-	
+
+
 	}
 	// 终于可以用了
 	onShow(() => {

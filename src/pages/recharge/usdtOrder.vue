@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<topNav :title="t('recharge.r_r1')" :goBackNum="2"></topNav>
-		<view class="pdlr45 mt70">
+		<view class="pdlr45 pt40">
 
-			<view class="mt38">
+			<view class="">
 				<!-- top4 -->
-				<view class="mt30 top_box">
+				<view class=" top_box">
 					<view class="f26 flex  col_center">
 						{{t('recharge.r_o1')}}: <text class="pl10 f34" :style="{'color':'#DB1825'}">{{showTime}}</text>
 					</view>
@@ -71,7 +71,7 @@
 					{{t('recharge.r_o8')}}
 					</view>
 					<view class="between">
-						<view :style="{border: '1rpx solid' +store.$state.contentColor,color:'#333'}">{{t('all.a_c1')}}</view>
+						<view :style="{border: '1rpx solid #f64841' ,color:'#f64841'}">{{t('all.a_c1')}}</view>
 						<view :style="{background:store.$state.contentColor}" @click="confirmHandle"> {{t('all.a_c2')}}
 						</view>
 					</view>
@@ -91,7 +91,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -137,7 +137,7 @@
 	const copyHandle = async (data) => {
 		try {
 			await toClipboard(data)
-			Toast.text(t('all.a_c4'))
+			showToast.text(t('all.a_c4'))
 		} catch (e) {
 			console.error(e)
 		}
@@ -176,12 +176,12 @@
 			}
 		}).then(res => {
 			showLoading.value.loading = false
-			Toast.text(t('all.a_c5'))
+			showToast.text(t('all.a_c5'))
 			uni.navigateTo({
 				url: '../tabbar/index'
 			})
 		}).catch(err => {
-			Toast.text(err.message)
+			showToast.text(err.message)
 		})
 	}
 
@@ -229,6 +229,9 @@
 </script>
 
 <style lang="scss">
+	page{
+		background-color: #f5f5f5;
+	}
 	.btns {
 		height: 120rpx;
 		line-height: 120rpx;

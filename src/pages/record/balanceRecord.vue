@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<topNav :title="t('rec.r_r1')"></topNav>
-		<view class="pdlr30 pt50">
+		<view class="pdlr10 pt50">
 
 			<z-paging class="" ref="paging" v-model="recordsList" @query="getData" width="100%" :fixed="false"
 				:use-page-scroll="true" :refresher-enabled="false" :to-bottom-loading-more-enabled="true"

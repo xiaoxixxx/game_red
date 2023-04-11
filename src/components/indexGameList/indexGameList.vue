@@ -1,12 +1,12 @@
 <template>
 	<view class="">
-		<view class="game mt40">
+		<view class="game mt40" @click="jumpPage('../game/win')">
 			<view class="gameList game1">
 				<view class="f50 text_bold">
-					WIN GO
+					{{t('win.w_i1')}}
 				</view>
 				<view class="mt20 f24">
-					 Guess green/purple/red to win
+						{{t('win.w_i2')}}
 				</view>
 				<view class="rightImg">
 					<image src="../../static/images/logo-wingo.webp" style="width: 240rpx;height: 170rpx;"></image>
@@ -14,22 +14,22 @@
 			</view>
 			<view class="pdtb20 pdlr30 gameBot" >
 				<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
-				:vertical="true" style="height: 90rpx;">
+				:vertical="true" :circular="true" style="height: 90rpx;">
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
 							<image src="@/static/images/avatar.svg"  style="width:56rpx ; height: 60rpx;"></image>
-							<text class="textHiddenOne pl20" style="width: 250rpx;">MemberYOdFb</text>
+							<text class="textHiddenOne pl20" style="width: 250rpx;">12312312</text>
 						</view>
 						<view class="f26">
-							<text>Có</text>
-							 317887.00 ₫
+							
+							 317887.00 {{currency}}
 						</view>
 					</swiper-item>
 				</swiper>
 			</view>
 		</view>
 		
-		<view class="game mt40">
+	<!-- 	<view class="game mt40">
 			<view class="gameList game2">
 				<view class="f50 text_bold">
 					5D Lotre
@@ -43,23 +43,22 @@
 			</view>
 			<view class="pdtb20 pdlr30 gameBot" >
 				<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
-				:vertical="true" style="height: 90rpx;">
+				:vertical="true" :circular="true" style="height: 90rpx;">
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
 							<image src="@/static/images/avatar.svg"  style="width:56rpx ; height: 60rpx;"></image>
 							<text class="textHiddenOne pl20" style="width: 250rpx;">MemberYOdFb</text>
 						</view>
 						<view class="f26">
-							<text>Có</text>
-							 317887.00 ₫
+							 317887.00 {{currency}}
 						</view>
 					</swiper-item>
 				</swiper>
 			</view>
-		</view>
+		</view> -->
 				
 		
-		<view class="game mt40">
+<!-- 		<view class="game mt40">
 			<view class="gameList game3">
 				<view class="f50 text_bold">
 					K3 Lotre
@@ -68,25 +67,24 @@
 					 Guess the number/big/small/odd/even
 				</view>
 				<view class="rightImg">
-					<image src="../../static/images/logo-wingo.webp" style="width: 240rpx;height: 170rpx;"></image>
+					<image src="../../static/images/logo-k333.webp" style="width: 240rpx;height: 170rpx;"></image>
 				</view>
 			</view>
 			<view class="pdtb20 pdlr30 gameBot" >
 				<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
-				:vertical="true" style="height: 90rpx;">
+				:vertical="true" :circular="true" style="height: 90rpx;">
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
 							<image src="@/static/images/avatar.svg"  style="width:56rpx ; height: 60rpx;"></image>
 							<text class="textHiddenOne pl20" style="width: 250rpx;">MemberYOdFb</text>
 						</view>
 						<view class="f26">
-							<text>Có</text>
-							 317887.00 ₫
+							 317887.00 {{currency}}
 						</view>
 					</swiper-item>
 				</swiper>
 			</view>
-		</view>
+		</view> -->
 				
 	</view>
 			
@@ -114,9 +112,14 @@
 			const {
 				t
 			} = useI18n();
-			
+			const currency = uni.getStorageSync('currency')
+			const jumpPage = url=>{
+				uni.navigateTo({
+					url
+				})
+			}
 			return {
-			
+				jumpPage,currency,	t
 			}
 		},
 	})

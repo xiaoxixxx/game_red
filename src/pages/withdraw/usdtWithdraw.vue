@@ -4,9 +4,9 @@
 		<view class="pdlr45 mt70">
 
 			<view class="mt55">
-				<view class="topBox center flex-col" :style="store.$state.wr.reBox">
+				<view class="topBox center flex-col" >
 					<view class="topItem f26">{{t('all.b_b1')}}</view>
-					<view class="mt35 f55" style="color: #661400;">{{currency}} {{pageData.balance_max}} </view>
+					<view class="mt35 f55" style="color: #fff;">{{currency}} {{pageData.balance_max}} </view>
 				</view>
 
 				<view class="mt40 inputItem">
@@ -94,7 +94,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -162,12 +162,12 @@
 
 	const submitHandle = () => {
 		if (pageData.value.check.status == 1) {
-			Toast.text(pageData.value.check.message)
+			showToast.text(pageData.value.check.message)
 			return
 		}
 
 		if ((inpVal.value - 0) < (pageData.value.min - 0) || (inpVal.value - 0) > (pageData.value.max - 0)) {
-			Toast.text('The amount entered is incorrect')
+			showToast.text('The amount entered is incorrect')
 			return false
 		}
 
@@ -189,12 +189,12 @@
 		}).then(res => {
 			getData();
 			showLoading.value.loading = false
-			Toast.text('submit success')
+			showToast.text('submit success')
 			inpVal.value = ""
 			fundPwd.value = ""
 		}).catch(err => {
 			showLoading.value.loading = false
-			Toast.text(err.message)
+			showToast.text(err.message)
 		})
 	}
 	const jumpPage = (url) => {
@@ -210,10 +210,15 @@
 	})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	page{
+		background-color: #f5f5f5;
+	}
 	.topBox {
 		width: 100%;
-		height: 328rpx
+		height: 328rpx;
+		background:linear-gradient(90deg, #cd0103, #f64841);
+		border-radius: 20rpx;
 	}
 
 	.bindAdd {

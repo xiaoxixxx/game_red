@@ -48,19 +48,19 @@
 				selectPath: '/static/tabbar/home.png',
 				pagePath: '/',
 			}, {
-				text: 'News',
+				text: 'Activity',
 				iconPath: '/static/tabbar/check1.png',
 				selectPath: '/static/tabbar/check.png',
 				pagePath: '/pages/tabbar/news',
 			}, {
 				text: '',
 				iconPath: '/static/tabbar/invite.png',
-				pagePath: '/pages/tabbar/panel'
+				pagePath: '/pages/tabbar/team'
 			}, {
 				text: 'wallet',
 				iconPath: '/static/tabbar/wallet1.png',
 				selectPath: '/static/tabbar/wallet.png',
-				pagePath: '/pages/tabbar/construct',
+				pagePath: '/pages/tabbar/wallet',
 			}, {
 				text: 'me',
 				iconPath: '/static/tabbar/me1.png',

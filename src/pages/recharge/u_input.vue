@@ -45,7 +45,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		Toast
+		showToast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -65,7 +65,7 @@
 	const inputNum = ref("")
 	const goOrder = () => {
 		if ((inputNum.value - 0) < (pageData.value.min - 0) || (inputNum.value - 0) > (pageData.value.max - 0)) {
-			Toast.text('Please enter the correct recharge range')
+			showToast.text('Please enter the correct recharge range')
 			return false
 		}
 		showLoading.value.loading = true
@@ -89,7 +89,7 @@
 			})
 		}).catch(err => {
 			showLoading.value.loading = false
-			uni.showToast({
+			uni.showshowToast({
 				title: err.message,
 				icon: 'none'
 			})
@@ -127,6 +127,9 @@
 </script>
 
 <style lang="scss">
+	page{
+		background-color: #f5f5f5;
+	}
 	.inpBox {
 		padding: 76rpx 70rpx 50rpx 70rpx;
 		background-color: #fff;

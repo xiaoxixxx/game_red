@@ -13,7 +13,8 @@
 					</view>
 				</view>
 				<view class="circle center" :class="actInd == 0?'actChoose':'noChoose'">
-					<nut-icon name="checklist" v-if="actInd == 0" :color="store.$state.contentColor"></nut-icon>
+					<IconFont name="Check" v-if="actInd == 0" class="phoneCheck animate__animated animate__fadeIn "
+						color="#f4453f"></IconFont>
 				</view>
 			</view>
 
@@ -25,11 +26,13 @@
 					</view>
 				</view>
 				<view class="circle center" :class="actInd == 1?'actChoose':'noChoose'">
-					<nut-icon name="checklist" v-if="actInd == 1" :color="store.$state.contentColor"></nut-icon>
+					<IconFont name="Check" v-if="actInd == 1" class="phoneCheck animate__animated animate__fadeIn "
+						color="#f4453f"></IconFont>
 				</view>
 			</view>
-			
-			<view class=" center l_inpS mt40 l_inpBg pdlr30 text_white f32" style="margin-top:214rpx" :style="{background:store.$state.contentColor}" @click="jumpPage">
+
+			<view class=" center l_inpS mt40 l_inpBg pdlr30 text_white f32" style="margin-top:214rpx"
+				:style="{background:store.$state.contentColor}" @click="jumpPage">
 				{{t('all.a_c2')}}
 			</view>
 		</view>
@@ -62,43 +65,45 @@
 	const choStyle = {
 		background: store.$state.contentColor,
 		color: "#fff",
-		transition:'.1s linear all'
+		transition: '.1s linear all'
 	}
 	const noChoStyle = {
-		background: "#fff",
+		background: "#ccc",
 		color: "#000"
 	}
 	const actInd = ref(0)
-	
+
 	const showUSDT = ref(false)
 	const showBANK = ref(false)
-	
-	
-	
-	const jumpPage = ()=>{
-	
-		if(actInd.value == 0 && showUSDT.value){
+
+
+
+	const jumpPage = () => {
+
+		if (actInd.value == 0 && showUSDT.value) {
 			uni.navigateTo({
-				url:'./u_input'
+				url: './u_input'
 			})
-		}else if(actInd.value == 1 && showBANK.value){
+		} else if (actInd.value == 1 && showBANK.value) {
 			uni.navigateTo({
-				url:'./bankRechrage'
+				url: './bankRechrage'
 			})
 		}
 	}
-	
-	const getData = ()=>{
+
+	const getData = () => {
 		request({
 			url: 'setting/financeWay',
 			methods: 'get'
 		}).then(res => {
-			let {recharge_type} = res
-			
-			if(recharge_type.includes(1)){
+			let {
+				recharge_type
+			} = res
+
+			if (recharge_type.includes(1)) {
 				showUSDT.value = true
 			}
-			 if(recharge_type.includes(2)){
+			if (recharge_type.includes(2)) {
 				showBANK.value = true
 			}
 			// console.log(res);
@@ -110,7 +115,10 @@
 	})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+	page{
+		background-color: #f5f5f5;
+	}
 	.items {
 		height: 130rpx;
 		padding: 0 50rpx;
@@ -131,4 +139,5 @@
 	.noChoose {
 		border: 1rpx solid #AFAFAF;
 	}
+
 </style>
