@@ -92,8 +92,9 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		max-width: 790rpx;
 		z-index: 1000;
+		max-width: 790rpx;
+		margin: 0 auto;
 	}
 
 	.tqb-tabbar-body {
@@ -108,8 +109,7 @@
 		margin: 0 auto;
 		z-index: 100;
 		padding: 22rpx 0;
-		width: 100%;
-
+		max-width: 790rpx;
 		.tqb-tabbar-item {
 			flex: 1;
 			display: flex;

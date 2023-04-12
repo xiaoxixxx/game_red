@@ -18,18 +18,17 @@
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
 							<image src="@/static/images/avatar.svg"  style="width:56rpx ; height: 60rpx;"></image>
-							<text class="textHiddenOne pl20" style="width: 250rpx;">12312312</text>
+							<text class="textHiddenOne pl20" style="width: 250rpx;">Member{{item}}YOdF</text>
 						</view>
 						<view class="f26">
-							
-							 317887.00 {{currency}}
+							 {{parseInt(Math.random()* 100) *100 }} {{currency}}
 						</view>
 					</swiper-item>
 				</swiper>
 			</view>
 		</view>
 		
-	<!-- 	<view class="game mt40">
+	<view class="game mt40">
 			<view class="gameList game2">
 				<view class="f50 text_bold">
 					5D Lotre
@@ -41,8 +40,11 @@
 					<image src="../../static/images/logo-lottery.webp" style="width: 240rpx;height: 170rpx;"></image>
 				</view>
 			</view>
-			<view class="pdtb20 pdlr30 gameBot" >
-				<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
+		 <view class="pdtb20 pdlr30 gameBot" >
+			 <view class="f40 text_center text_bold">
+				Coming soon
+			 </view>
+				<!--	<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
 				:vertical="true" :circular="true" style="height: 90rpx;">
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
@@ -53,12 +55,12 @@
 							 317887.00 {{currency}}
 						</view>
 					</swiper-item>
-				</swiper>
+				</swiper> -->
 			</view>
-		</view> -->
+		</view> 
 				
 		
-<!-- 		<view class="game mt40">
+	<view class="game mt40">
 			<view class="gameList game3">
 				<view class="f50 text_bold">
 					K3 Lotre
@@ -71,7 +73,10 @@
 				</view>
 			</view>
 			<view class="pdtb20 pdlr30 gameBot" >
-				<swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
+				<view class="f40 text_center text_bold">
+								Coming soon
+				</view>
+				<!-- <swiper :autoplay="true" :interval="2000" :duration="500" :disable-touch="true"
 				:vertical="true" :circular="true" style="height: 90rpx;">
 					<swiper-item v-for="(item, index) in 5" :key="index" class="between ">
 						<view class="flex col_center">
@@ -82,9 +87,9 @@
 							 317887.00 {{currency}}
 						</view>
 					</swiper-item>
-				</swiper>
+				</swiper> -->
 			</view>
-		</view> -->
+		</view> 
 				
 	</view>
 			

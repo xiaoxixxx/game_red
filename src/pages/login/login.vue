@@ -323,6 +323,9 @@
 </script>
 
 <style lang="scss" scoped>
+	page{
+		background: #fff;
+	}
 	.listItem2 {
 		font-size: 30rpx;
 		padding: 10rpx 20rpx;
@@ -335,9 +338,9 @@
 	}
 
 	.topBox {
-		height: 460rpx;
+		height: 280rpx;
 		padding: 20rpx 30rpx;
-		background: url('@/static/images/login_banner.png') no-repeat 100%/100%;
+		background: url('@/static/images/loginBg.png') no-repeat 100%/100%;
 	}
 
 

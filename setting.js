@@ -4,7 +4,7 @@ import {
 } from "@/store/themeNum.js";
 const store = userStore();
 
-let dev = 1
+let dev = 2
 let COUNTRY = {
 	url: '',
 	qianzhui: '',
@@ -17,6 +17,16 @@ let COUNTRY = {
 if (dev == 1) {
 	COUNTRY.url='hldev.task777.com',
 	COUNTRY.lang="en",
+	COUNTRY.title="",
+	COUNTRY.icon=""
+}else if (dev == 2) {
+	COUNTRY.url='api.nigeria999.com',
+	COUNTRY.lang="en",
+	COUNTRY.title="",
+	COUNTRY.icon=""
+}else if (dev == 3) {
+	COUNTRY.url='api.369club.vip',
+	COUNTRY.lang="in",
 	COUNTRY.title="",
 	COUNTRY.icon=""
 }

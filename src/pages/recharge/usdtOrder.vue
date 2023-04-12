@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<topNav :title="t('recharge.r_r1')" :goBackNum="2"></topNav>
-		<view class="pdlr45 pt40">
+		<view class="pdlr45 mt70">
 
-			<view class="">
+			<view class="mt38">
 				<!-- top4 -->
-				<view class=" top_box">
+				<view class="mt30 top_box">
 					<view class="f26 flex  col_center">
 						{{t('recharge.r_o1')}}: <text class="pl10 f34" :style="{'color':'#DB1825'}">{{showTime}}</text>
 					</view>
@@ -54,7 +54,7 @@
 					@click="cancleOrder">
 					{{t('recharge.r_o7')}}
 				</view>
-				<view class="btns mt22" :style="choStyle" @click="jumpPage('./txid?order='+pageData.order_no)">
+				<view class="btns mt22" :style="choStyle" @click="changePage(pageData.order_no)">
 					{{t('recharge.r_r6')}}
 				</view>
 			</view>
@@ -71,7 +71,7 @@
 					{{t('recharge.r_o8')}}
 					</view>
 					<view class="between">
-						<view :style="{border: '1rpx solid #f64841' ,color:'#f64841'}">{{t('all.a_c1')}}</view>
+						<view :style="{border: '1rpx solid' +store.$state.contentColor,color:'#333'}">{{t('all.a_c1')}}</view>
 						<view :style="{background:store.$state.contentColor}" @click="confirmHandle"> {{t('all.a_c2')}}
 						</view>
 					</view>
@@ -91,7 +91,7 @@
 		userStore
 	} from "@/store/themeNum.js";
 	import {
-		showToast
+		Toast
 	} from '@nutui/nutui';
 	import {
 		onShow,
@@ -137,7 +137,7 @@
 	const copyHandle = async (data) => {
 		try {
 			await toClipboard(data)
-			showToast.text(t('all.a_c4'))
+			Toast.text(t('all.a_c4'))
 		} catch (e) {
 			console.error(e)
 		}
@@ -161,7 +161,20 @@
 			}
 		}, 1000)
 	}
-
+	
+	const changePage = url =>{
+		
+		if(!uploadTxid.value){
+			uni.navigateTo({
+				url: "../tabbar/index"
+			})
+		}else{
+		jumpPage('./txid?order='+url)
+		}
+		
+		
+	}
+// res.type == 1?uploadTxid.value = false:uploadTxid.value = true
 	const cancleOrder = () => {
 		cancleHandlemMask.value = true
 
@@ -176,12 +189,12 @@
 			}
 		}).then(res => {
 			showLoading.value.loading = false
-			showToast.text(t('all.a_c5'))
+			Toast.text(t('all.a_c5'))
 			uni.navigateTo({
 				url: '../tabbar/index'
 			})
 		}).catch(err => {
-			showToast.text(err.message)
+			Toast.text(err.message)
 		})
 	}
 
@@ -190,7 +203,7 @@
 			url
 		})
 	}
-
+	
 	const pageData = ref({})
 	const addresData = ref("")
 	const uploadTxid = ref(false)
@@ -229,9 +242,6 @@
 </script>
 
 <style lang="scss">
-	page{
-		background-color: #f5f5f5;
-	}
 	.btns {
 		height: 120rpx;
 		line-height: 120rpx;

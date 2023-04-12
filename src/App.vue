@@ -8,7 +8,7 @@
 	export default {
 		mixins: [pageAnimation],
 		onLaunch: function() {
-			
+
 		},
 		onShow: function() {
 			// console.log('App Show')
@@ -41,7 +41,7 @@
 
 	page {
 		font-family: Avenir, Helvetica, Arial, sans-serif;
-		// background-color: #EAEFF0;
+		background-color: #f5f5f5;
 		color: #2c3e50;
 		font-size: 30rpx;
 		animation: .3s linear all;
@@ -100,7 +100,8 @@
 	}
 
 	uni-page {
-
+		max-width: 790rpx;
+		margin: 0 auto;
 		// display: webkit-box;
 		// overflow: auto;
 		// paddingb-bottom: 10rpx;
@@ -108,15 +109,15 @@
 		// font-family: SF UI Text;
 	}
 
-::-webkit-scrollbar{
-	scrollbar-face-color: #B3DDF7;
-	scrollbar-shadow-color: #B3DDF7;
-	scrollbar-highlight-color: #B3DDF7;
-	scrollbar-3dlight-color: #EBEBE4;
-	scrollbar-darkshadow-color: #EBEBE4;
-	scrollbar-track-color: #F4F4F0;
-	scrollbar-arrow-color: #000000;
-}
+	::-webkit-scrollbar {
+		scrollbar-face-color: #B3DDF7;
+		scrollbar-shadow-color: #B3DDF7;
+		scrollbar-highlight-color: #B3DDF7;
+		scrollbar-3dlight-color: #EBEBE4;
+		scrollbar-darkshadow-color: #EBEBE4;
+		scrollbar-track-color: #F4F4F0;
+		scrollbar-arrow-color: #000000;
+	}
 
 	// 签名大小
 	.nut-signature .nut-signature-inner {

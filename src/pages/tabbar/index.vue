@@ -5,7 +5,9 @@
 			<view>
 				<image src="@/static/images/headlogo.png" style="width: 210rpx;height: 80rpx;"></image>
 			</view>
-			<image src="@/static/images/down.png" style="width: 50rpx;height: 50rpx;"></image>
+			<view style="width: 50rpx;height: 50rpx;">
+				<image src="@/static/images/down.png" style="width: 50rpx;height: 50rpx;" @click="downLoadApp" v-if="appData.download_status == 1"></image>
+			</view>
 		</view>
 
 		<view class="banner">
@@ -98,7 +100,7 @@
 			</view>
 		</view>
 
-		<view class="mt30 pdlr30">
+		<view class="mt30 pdlr30" v-if="withdrawList.length>0">
 			<view class="swiperTitle">
 				{{t('game.g_b7')}}
 			</view>
@@ -361,7 +363,21 @@
 				//TODO handle the exception
 			}
 		})
+		
+		
+		// 获取app状态
+		request({
+			url: 'setting/app',
+			methods: 'get',
+		}).then(res => {
+			appData.value = res
+		})
+		
 	}
+	const downLoadApp = ()=>{
+		window.open(appData.value.url)
+	}
+	const appData = ref({})
 	const show = ref(false)
 	const maskContent = ref("")
 	const currency = ref("")
@@ -494,7 +510,9 @@
 			position: absolute;
 			bottom: 75rpx;
 			left: 0;
-			transform: translateX(90%);
+			right:0;
+			margin: 0 auto;
+			width: 400rpx;
 		}
 		.bounsBg {
 			height: 378rpx;

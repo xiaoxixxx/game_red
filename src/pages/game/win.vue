@@ -305,7 +305,8 @@
 			} else {
 				getUserRec()
 			}
-			upDateUserBalance()
+		}).catch(err=>{
+			showLoading.value.loading = false
 		})
 
 		// 公告
@@ -318,7 +319,7 @@
 		})
 	}
 	const periodTimes = ref('')
-	const gameId = ref(0)
+	const gameId = ref(-1)
 	const optionId = ref(0)
 	const barText = ref("")
 	// 获取当前游戏信息
@@ -444,6 +445,7 @@
 		}
 		showLoading.value.loading = true
 		getData()
+		upDateUserBalance()
 	})
 	const audioValue = ref("")
 	const bofang = () => {

@@ -5,6 +5,7 @@ import langEn from './en';
 import langIn from './in';
 // import langPt from './pt';
 
+// import 
 
 const messages = {
 	'en': langEn,
@@ -22,7 +23,7 @@ if(cur_lang == 'ar'){
 	document.querySelector("html").setAttribute("dir",'rtl')
 }
 
-	// locale: uni.getStorageSync('lang') || 'en',
+	
 const i18n = createI18n({
 	globalInjection: true, //全局$t 生效
 	locale: uni.getStorageSync('lang') || 'en',

@@ -166,6 +166,7 @@
 <style lang="scss" scoped>
 	.botBox{
 		box-shadow: 0 0.21333rem 0.8rem 0 rgba(211,13,13,.07);
+		border-radius: 20rpx;
 		.myItem{
 			padding: 10rpx 30rpx;
 			

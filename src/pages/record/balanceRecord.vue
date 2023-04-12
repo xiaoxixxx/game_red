@@ -15,7 +15,7 @@
 							<text v-if="item.change_type ==1">+</text>
 							<text v-else>-</text>{{ item.amount }}</view>
 					</view>
-					<view class="vvItem">
+					<view class="vvItem" v-if="item.change_reason">
 						<view class="f26">{{t('rec.r_r2')}}</view>
 						<view class="" style="width: 70%;text-align: right;">{{ item.change_reason }}</view>
 					</view>

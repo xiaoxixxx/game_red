@@ -172,7 +172,7 @@
 			url
 		})
 	}
-	const currency = ref("$")
+	const currency = uni.getStorageSync('currency')
 
 	// 终于可以用了
 	onShow(() => {

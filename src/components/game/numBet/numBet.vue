@@ -177,6 +177,10 @@
 			const chooseNum = ref("")
 			const optionId = ref("")
 			const openBetMask = item => {
+				if( props.gameId == -1){
+					console.log('no game');
+					return false
+				}
 				if (jinYong.value) {
 					return false
 				}

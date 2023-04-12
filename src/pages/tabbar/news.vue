@@ -17,10 +17,12 @@
 					{{t('game.g_a9')}} <br> {{t('game.g_a10')}}
 				</view>
 
-				<view class="btns center" @click="jumpPage('../act/sign')">
-					{{t('game.g_a11')}}
-					<view class="ml10 center" style="transform: rotateZ(-90DEG);">
-						<IconFont name="triangle-down" color="#f65300"></IconFont>
+				<view class="flex">
+					<view class="btns center textHiddenOne" @click="jumpPage('../act/sign')">
+						{{t('game.g_a11')}}
+						<view class="ml10 center" style="transform: rotateZ(-90DEG);">
+							<IconFont name="triangle-down" color="#f65300"></IconFont>
+						</view>
 					</view>
 				</view>
 			</view>
@@ -111,9 +113,11 @@
 		padding: 10rpx 20rpx;
 		border-radius: 30rpx;
 		background-color: #fdfbe2;
-		width: 200rpx;
+		// width: 200rpx;
+		min-width: 200rpx;
+		max-width: 300rpx;
 		color: #f65300;
 		text-align: center;
-		margin: 20rpx 0 0 80rpx;
+		margin: 20rpx 0 0 40rpx;
 	}
 </style>
