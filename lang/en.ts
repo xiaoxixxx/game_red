@@ -4,7 +4,11 @@ export default {
 		a_a2:"Return the principal",
 		a_a4:"Profit time",
 		a_a5:"i know",
-		a_a6:"Rule"
+		a_a6:"Rule",
+		a_a7:"Pending",
+		a_a8:"Win",
+		a_a9:"Lose",
+		a_a10:"Total",
 	},
 	win:{
 		w_i1:"	WIN GO",

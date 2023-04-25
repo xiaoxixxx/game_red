@@ -3,12 +3,12 @@
 		<topNav :title="t('mine.m_c5')"></topNav>
 		<view class="pdlr30 mt70">
 
-			<view class="items mb40" v-for="item in serviceList" :style="choStyle" >
+			<view class="items mb40" v-for="item in serviceList"   @click="jumpWin(item)">
 				<view class="flex col_center">
 					<!-- 	<image v-if="item ==1" src="../../static/themeNum1/icon/tg.png" mode="widthFix"
 						style="width: 78rpx;height: 78rpx;">
 					</image> -->
-					<image src="../../static/themeNum1/icon/tg2.png" mode="widthFix"
+					<image :src="item.avatar" mode="widthFix"
 						style="width: 78rpx;height: 78rpx;">
 					</image>
 					<view class="mglr40 f34">
@@ -76,6 +76,10 @@
 			showLoading.value.loading = false
 		}, 500)
 	}
+	
+	const jumpWin = (item)=>{
+		window.open(item.contact_link)
+	}
 	// 终于可以用了
 	onShow(() => {
 		getData()
@@ -90,5 +94,6 @@
 		align-items: center;
 		justify-content: space-between;
 		border-radius: 20rpx;
+		background-color: #fff;
 	}
 </style>

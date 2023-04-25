@@ -6,6 +6,19 @@
 
 		}
 	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"navigationStyle": "custom",
+		"navigationBarTitleText": "",
+		"style": {
+			"app-plus": {
+				"animationType": "fade-in",
+				"animationDuration": 300
+			}
+		}
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/tabbar/index"
@@ -91,20 +104,18 @@
 		}, {
 			"path": "pages/record/signRecord"
 		}
-	],
-
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
-		"navigationStyle": "custom",
-		"style": {
-			"app-plus": {
-				"animationType": "fade-in",
-				"animationDuration": 300
-			}
+	    ,{
+            "path" : "pages/game/k3"
+        }
+        ,{
+            "path" : "pages/act/drawPan"
+        }
+		,{
+		    "path" : "pages/record/drawRecord"
 		}
-	},
+    ],
+
+
 	"tabBar": {
 		"backgroundColor": "#fff",
 		"selectedColor": "#f2413b",

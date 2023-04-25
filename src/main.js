@@ -6,6 +6,10 @@ import '../comm/animate.css'
 import i18n from '../lang/index.ts'
 import pinia from './store/index'
 import piniaPersist from 'pinia-plugin-persist'
+
+// vue
+import NutBig  from "@nutui/nutui-bingo";
+import "@nutui/nutui-bingo/dist/style.css";
 pinia.use(piniaPersist)
 
 import { IconFont } from '@nutui/icons-vue';
@@ -17,5 +21,5 @@ import NutUI from "@nutui/nutui";
 // 采用按需加载时  此全局css样式，需要删除
 import "@nutui/nutui/dist/style.css";
 
-createApp(App).use(i18n).use(IconFont).use(pinia).use(NutUI).mount("#app");
+createApp(App).use(i18n).use(IconFont).use(pinia).use(NutUI).use(NutBig).mount("#app");
 

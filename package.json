@@ -50,6 +50,7 @@
     "@dcloudio/uni-quickapp-webview": "3.0.0-3060520221121001",
     "@nutui/icons-vue": "^0.0.26",
     "@nutui/nutui": "^4.0.4",
+    "@nutui/nutui-bingo": "^1.0.7",
     "echarts": "^5.4.1",
     "i18n": "^0.15.1",
     "lib-flexible": "^0.3.2",

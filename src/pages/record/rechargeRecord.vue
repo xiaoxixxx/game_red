@@ -5,9 +5,9 @@
 
 			<z-paging class="" ref="paging" v-model="recordsList" @query="getData" width="100%" :fixed="false"
 				:use-page-scroll="true" :refresher-enabled="false" :to-bottom-loading-more-enabled="true"
-				:auto-show-back-to-top="true" :safe-area-inset-bottom="true" ::empty-view-text="t('rec.r_a1')"
+				:auto-show-back-to-top="true" :safe-area-inset-bottom="true" :empty-view-text="t('rec.r_a1')"
 				:loading-more-no-more-text="t('rec.r_a1')" :empty-view-reload-text="t('rec.r_a2')" :loading-more-default-text="t('rec.r_a2')"
-				:loading-more-loading-text="t('rec.r_a3')" :loading-more-fail-text="t('rec.r_a4')" >
+				:loading-more-loading-text="t('rec.r_a3')" :loading-more-fail-text="t('rec.r_a4')"  >
 				<view class=" listItem" v-for="(item, index) in recordsList" :key="index">
 					<view class="vvItem">
 						<view class="f26">{{t('rec.r_r5')}}</view>

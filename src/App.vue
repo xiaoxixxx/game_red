@@ -24,8 +24,8 @@
 
 <style lang="scss">
 	@font-face {
-		font-family: "PingFangSC";
-		src: url('@/static/PingFang.ttf');
+		// font-family: "PingFangSC";
+		// src: url('@/static/PingFang.ttf');
 	}
 
 	/*每个页面公共css */
@@ -40,7 +40,7 @@
 	}
 
 	page {
-		font-family: Avenir, Helvetica, Arial, sans-serif;
+		font-family: Avenir,Helvetica,Arial,sans-serif;
 		background-color: #f5f5f5;
 		color: #2c3e50;
 		font-size: 30rpx;
@@ -81,8 +81,13 @@
 		color: #000 !important;
 	}
 
-
-
+	.drawTable-name{
+		color: #000 !important;
+	}
+	// .turntable{
+	// 	background-color: #B3DDF7;
+	// 	border-radius: 30%;
+	// }
 	.nut-noticebar__page {
 		border-radius: 10rpx !important;
 		height: 80rpx !important;

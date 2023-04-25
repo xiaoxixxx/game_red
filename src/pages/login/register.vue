@@ -59,13 +59,13 @@
 							v-model="regisForm.sms_code">
 					</view>
 
-					<view class="l_inpBg center  l_inpS pdlr20  ml20 text_white" style="width:220rpx;"
+					<view class=" center  l_inpS pdlr20  ml20 text_white" style="width:220rpx;"
 						:style="{background:store.$state.contentColor}" v-if="!hasSend" @click="sendHandle">
 						OTP
 					</view>
 
 					<view class="l_inpBg center  l_inpS pdlr20  ml20 text_white" style="width:220rpx;"
-						:style="{background:store.$state.contentColor}" v-if="else" @click="sendHandle">
+						:style="{background:store.$state.contentColor}" v-else >
 						{{hasSecond}}s
 					</view>
 				</view>
@@ -222,16 +222,18 @@
 			country: country_code.value.text,
 			type: 1
 		}
-
+		showLoading.value.loading = true
 		request({
 			url: 'join/sms',
 			methods: 'post',
 			data: data
 		}).then(res => {
 			startTimer()
+			showLoading.value.loading = false
 			hasSend.value = true
 			showToast.text(t('login.l_r8'))
 		}).catch(err => {
+			showLoading.value.loading = false
 			showToast.text(err.message)
 		})
 	}
@@ -245,7 +247,8 @@
 		timer.value = setInterval(() => {
 			if (hasSecond.value == 0) {
 				clearInterval(timer.value)
-				hasSecond = false
+				hasSend = false
+				hasSecond = 59
 			}
 			hasSecond.value--;
 		}, 1000)
@@ -278,7 +281,9 @@
 	}
 	const methods = {
 		back() {
-			history.back()
+			uni.navigateTo({
+				url:'./login'
+			})
 		},
 		changePage() {
 			uni.navigateTo({
@@ -445,7 +450,6 @@
 		if (e.code) {
 			regisForm.value.invite_code = e.code
 			canInpCode.value = false
-
 		}
 		if (e.country) {
 			canChoCountry.value = false

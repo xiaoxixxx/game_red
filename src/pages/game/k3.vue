@@ -46,6 +46,7 @@
 				</nut-noticebar>
 			</view>
 
+			<!-- Rule -->
 			<view class=" mt20" v-if="topData.length >0">
 				<minBox @changeActInd="getActInd" :topData="topData"></minBox>
 			</view>
@@ -56,7 +57,8 @@
 			<view class=" perBox ">
 				<view>
 					<view class="f20">{{t('win.w_i7')}}</view>
-					<view class="text_bold f34 mt20">{{periodTimes}}</view>
+					<!-- <view class="text_bold f34 mt20">{{periodTimes}}</view> -->
+					<view class="text_bold f34 mt20">12312631231</view>
 				</view>
 				<view class="timerBox">
 					<view>
@@ -81,15 +83,26 @@
 				</view>
 			</view>
 
-			<view class="mt20" v-if="betAmount && betMultpile.length >0 && optionData">
+			<view class="shazi">
+				<image :src="shaiziList[firstInd]" style="width: 140rpx;height: 150rpx;"></image>
+				<image :src="shaiziList[secondInd]" style="width: 140rpx;height: 150rpx;"></image>
+				<image :src="shaiziList[thirdInd]" style="width: 140rpx;height: 150rpx;"></image>
+			</view>
+
+			<!-- 	<view class="btns" style="background-color: skyblue;text-align: center;height: 100rpx;line-height: 100rpx;"
+				@click="jump">
+				open
+			</view> -->
+
+			<view class="mt20" v-if="betAmount && betMultpile.length >0 && optionData && listData.length>0">
 				<!-- game box  -->
 
 				<numBet ref="numBetRef" :titleInd="titleInd" :topData="topData" :userBalance="userBalance"
 					:gameId="gameId" :showLoading="showLoading" @confirm="confirm" :betMultpile="betMultpile"
 					:betAmount="betAmount" :optionData="optionData" :times="times" :bettingRule='bettingRule'
-					:lock_time="lock_time"></numBet>
-					
-					
+					:lock_time="lock_time" :listData="listData"></numBet>
+
+
 			</view>
 
 			<view class="mt20 between recTypeBtn">
@@ -101,89 +114,77 @@
 				</view>
 			</view>
 		</view>
+
+		<!-- period rec -->
 		<view class="botRecod mt30" v-if="actTypeInd == 1">
 			<view class="tableHead">
 				<view>{{t('win.w_i11')}}</view>
-				<view>{{t('win.w_i12')}}</view>
+				<view>{{t('add1.a_a10')}}</view>
 				<view>{{t('win.w_i13')}}</view>
+				<view>Odd/Even</view>
 				<view>
-					{{t('win.w_i14')}}
+					{{t('win.w_i12')}}
 				</view>
 			</view>
 			<view class="tableBody">
 				<view class="tableItem" v-for="item in recodData" :class="item !== recodData.length -1?'borderB':''">
 					<view>{{item.number}}</view>
 					<view :class="`resColor${item.res}`">{{item.prize_number}}</view>
-					<view>{{item.prize_number>4?'Big':'small'}}</view>
-					<view class="center ">
-						<div class="center" v-if="item.prize_number == 0">
-							<text class="dor numBg2"></text>
-							<text class="dor ml10 numBg5"></text>
-						</div>
-
-						<div class="center" v-else-if="item.prize_number == 5">
-							<text class="dor numBg1"></text>
-							<text class="dor ml10 numBg5"></text>
-						</div>
-						<text class="dor" :class="`numBg${item.prize_number}`" v-else></text>
+					<view>{{item.prize_number>10?'Big':'small'}}</view>
+					<view>{{item.s_d%2==0?'Even':'Odd'}}</view>
+					<view>
+						<!-- {{item.prize_number_detail[0]}}
+						{{item.prize_number_detail[1]}}
+						{{item.prize_number_detail[2]}} -->
+						<image :src="recList[item.prize_number_detail[0] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;"></image>
+						<image :src="recList[item.prize_number_detail[1] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;" class="mglr10"></image>
+						<image :src="recList[item.prize_number_detail[2] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;"></image>
 					</view>
 				</view>
-
-				<!-- 	<view class="mt40 center">
-					<view class="center" style="width: 60rpx;height: 60rpx;"
-						:style="page>1?{background:'#fb4e4e'}:{background:'#999'}" @click="page>1?changePage('cel'):''">
-						<IconFont name="rect-left" color="#fff"></IconFont>
-					</view>
-					<view class="mglr40 f40">{{page}}</view>
-					<view class="center" style="width: 60rpx;height: 60rpx;"
-						:style="recodData.length==10?{background:'#fb4e4e'}:{background:'#999'}"
-						@click="recodData.length==10?changePage('add'):''">
-						<IconFont name="rect-right" color="#fff"></IconFont>
-					</view>
-				</view>
-
-				<view style="height: 100rpx;"></view> -->
 			</view>
 		</view>
 
 
-		<!-- 用户记录 -->
-		<view class="userRec mt30" v-if="actTypeInd == 2">
+		<!-- user rec -->
+		<view class="userRecEl mt30" v-if="actTypeInd == 2">
 			<view class="tableHead">
-				<view class="userHead money">{{t('win.w_i11')}}</view>
-				<view class="userHead">{{t('win.w_i15')}}</view>
-
-				<view class="userHead">{{t('win.w_i12')}}</view>
+				<view class="userHead w35">{{t('win.w_i11')}}</view>
+				<view class="userHead">Total</view>
+				<view class="userHead w35">{{t('win.w_i15')}}</view>
+				<view class="userHead w35">{{t('win.w_i12')}}</view>
 				<view class="userHead">{{t('win.w_i17')}}</view>
-				<view class="userHead money">{{t('win.w_i18')}}</view>
-				<view class="userHead money">{{t('win.w_i19')}}</view>
-
-
-				<view class="userHead money">{{t('win.w_i16')}}</view>
+				<view class="userHead w35">{{t('win.w_i18')}}</view>
+				<view class="userHead w35">{{t('win.w_i19')}}</view>
+				<view class="userHead w35">{{t('win.w_i16')}}</view>
 			</view>
 			<view class="tableBody">
-				<view class="usertableItem" v-for="item in recodData"
-					:class="item !== recodData.length -1?'borderB':''">
-					<view class="userTd money">{{item.gamePlay?.number}}
+				<view class="usertableItem" v-for="item in userData" :class="item !== userData.length -1?'borderB':''">
+					<view class="userTd w35">{{item.gamePlay?.number}}
 					</view>
-
-					<view class="userTd">{{item.option?.name}}</view>
-
-					<view class="userTd" :class="`num${item.gamePlay.prize_number}`">{{item.gamePlay?.prize_number}}
+					<view class="userTd">{{item.gamePlay?.prize_number?item.gamePlay?.prize_number:'--'}}</view>
+					<view class="w35">
+						{{item.option.name}}
+					</view>
+					<view class="w35 userTd">
+						<image :src="recList[item.gamePlay.prize_number_detail[0] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;"></image>
+						<image :src="recList[item.gamePlay.prize_number_detail[1] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;" class="mglr10"></image>
+						<image :src="recList[item.gamePlay.prize_number_detail[2] -1]" mode="widthFix"
+							style="width: 40rpx;height: 40rpx;"></image>
 					</view>
 					<view class="userTd" :class="item.type == 1?' pass':'error'">
 						{{item.type == 0?t('add1.a_a7'):item.type == 1?t('add1.a_a8'):t('add1.a_a9')}}
 					</view>
-					<view class="userTd  money">{{item.money}}</view>
-					<view class="userTd money">{{item.service_charge}}
+					<view class="userTd  w35">{{item.money}}</view>
+					<view class="userTd w35">{{item.service_charge}}
 					</view>
-
-
-					<view class="userTd money" :class="item.type == 1?' pass':'error'">
+					<view class="userTd w35" :class="item.type == 1?' pass':'error'">
 						{{item.type == 1?item.win_money:'0'}}
 					</view>
-
-
 				</view>
 			</view>
 
@@ -203,6 +204,8 @@
 		</view>
 		<view style="height: 50rpx;"></view>
 		<Loading ref="showLoading"></Loading>
+
+		<view style="height: 500rpx;" v-if="numBetRef?.showBasic"></view>
 	</view>
 </template>
 
@@ -210,7 +213,7 @@
 	import COUNTRY from '../../../setting.js';
 	import request from '../../../comm/request.ts';
 	import minBox from '@/components/game/winRule/winRule.vue'
-	import numBet from '@/components/game/win/numBet.vue'
+	import numBet from '@/components/game/k3/numBet.vue'
 	import {
 		userStore
 	} from "@/store/themeNum.js";
@@ -240,6 +243,51 @@
 	const back = () => {
 		history.back()
 	}
+
+	const firstInd = ref(-1) // 0-5 1-6
+	const secondInd = ref(-1)
+	const thirdInd = ref(-1)
+	const userData = ref([])
+	const shaiziList = ref([
+		'/static/images/bg1.png',
+		'/static/images/bg2.png',
+		'/static/images/bg3.png',
+		'/static/images/bg4.png',
+		'/static/images/bg5.png',
+		'/static/images/bg6.png',
+	])
+
+	const recList = [
+		'/static/k3/rec1.png',
+		'/static/k3/rec2.png',
+		'/static/k3/rec3.png',
+		'/static/k3/rec4.png',
+		'/static/k3/rec5.png',
+		'/static/k3/rec6.png',
+	]
+	const shaiziTimer = ref(null)
+	const jump = (firV, secV, thiV) => {
+
+		shaiziTimer.value = setInterval(() => {
+			while (Math.floor(Math.random() * 6) !== firstInd.value) {
+				firstInd.value = Math.floor(Math.random() * 6)
+			}
+			while (Math.floor(Math.random() * 6) !== secondInd.value) {
+				secondInd.value = Math.floor(Math.random() * 6)
+			}
+			while (Math.floor(Math.random() * 6) !== thirdInd.value) {
+				thirdInd.value = Math.floor(Math.random() * 6)
+			}
+		}, 50)
+		setTimeout(() => {
+
+			clearInterval(shaiziTimer.value)
+			firstInd.value = firV
+			secondInd.value = secV
+			thirdInd.value = thiV
+		}, 3000)
+	};
+
 	const timer = ref(null)
 	const times = ref()
 	const formDate = ref({
@@ -251,16 +299,12 @@
 			formDate.value.minutes = parseInt(times.value / 60)
 			formDate.value.seconds = times.value % 60
 			if (times.value == 0) {
-				showLoading.value.loading = true
 				clearInterval(timer.value)
+				showLoading.value.loading = true
 				setTimeout(() => {
 					getCurrentData()
-					if (actTypeInd.value == 1) {
-						getRecord()
-					} else {
-						getUserRec()
-					}
-				}, Math.ceil(Math.random() * 4 + 2) * 1000)
+					getBotRecord('zhuan', 1)
+				}, 2000)
 			} else {
 				times.value--;
 			}
@@ -275,16 +319,9 @@
 		lock_time.value = data.item.lock_time
 		showLoading.value.loading = true
 		numBetRef.value.showBgMask = false
-		
 		getCurrentData(data.item.id)
-		
-		if (actTypeInd.value == 1) {
-			getRecord()
-		} else {
-			getUserRec()
-		}
 	}
-	const actTypeInd = ref(1)
+	const actTypeInd = ref(2)
 	const recodData = ref([])
 	const userBalance = ref(0)
 
@@ -295,26 +332,27 @@
 	const betMultpile = ref([])
 	const optionData = ref({})
 	const bettingRule = ref("")
+
+	const listData = ref([])
 	// 获取游戏相关配置
 	const getData = () => {
 		request({
-			url: 'game/game_board',
+			url: 'k3/game_board',
 			method: 'get'
 		}).then(res => {
+			// rule
 			topData.value = res.game
+
 			betAmount.value = res.amount.amount
 			betMultpile.value = res.amount.multiple
 			bettingRule.value = res.amount.bettingRule
 			optionData.value = res.option
 			optionId.value = res.game[0].id
 			lock_time.value = res.game[0].lock_time
+			listData.value = [...res.option.number, ...res.option.sd, ...res.option.size]
 			getCurrentData()
-			if (actTypeInd.value == 1) {
-				getRecord()
-			} else {
-				getUserRec()
-			}
-		}).catch(err=>{
+			getBotRecord()
+		}).catch(err => {
 			showLoading.value.loading = false
 		})
 
@@ -334,7 +372,7 @@
 	// 获取当前游戏信息
 	const getCurrentData = () => {
 		request({
-			url: 'game/game_play',
+			url: 'k3/game_play',
 			method: 'get',
 			data: {
 				gameId: optionId.value
@@ -347,15 +385,17 @@
 			periodTimes.value = res.number
 			times.value = res.rest_time
 			gameId.value = res.id
+			showLoading.value.loading = false
 		})
 	}
 
 	const page = ref(1)
 
 	// 获取记录
-	const getRecord = () => {
+	const getRecord = (item, flag) => {
+
 		request({
-			url: 'game/history',
+			url: 'k3/history',
 			methods: 'get',
 			data: {
 				gameId: optionId.value,
@@ -367,7 +407,22 @@
 			} catch (e) {
 				//TODO handle the exception
 			}
-			recodData.value = res.data
+
+			if (item == 'zhuan') {
+				jump(res.data[0].prize_number_detail[0] - 1, res.data[0].prize_number_detail[1] - 1,
+					res.data[0].prize_number_detail[2] - 1)
+				if (flag !== 1) {
+					setTimeout(() => {
+						recodData.value = res.data
+					}, 3500)
+				}
+
+			} else {
+				recodData.value = res.data
+				firstInd.value = recodData.value[0].prize_number_detail[0] - 1
+				secondInd.value = recodData.value[0].prize_number_detail[1] - 1
+				thirdInd.value = recodData.value[0].prize_number_detail[2] - 1
+			}
 		})
 	}
 	const jumpPage = (url) => {
@@ -377,7 +432,7 @@
 	}
 	const getUserRec = () => {
 		request({
-			url: 'game/betting_log',
+			url: 'k3/betting_log',
 			methods: 'get',
 			data: {
 				size: '10',
@@ -385,36 +440,29 @@
 			}
 		}).then(res => {
 			showLoading.value.loading = false
-			recodData.value = res.data
+			userData.value = res.data
 		})
 	}
 	const changeRecType = (item) => {
 		page.value = 1
 		recodData.value = []
+		userData.value = []
 		showLoading.value.loading = true
 		actTypeInd.value = item
-		if (actTypeInd.value == 1) {
-			getRecord()
-		} else {
-			getUserRec()
-		}
+		getBotRecord('zhuan1', 2)
 	}
 	const confirm = data => {
 		data.periodId = gameId.value
 		showLoading.value.loading = true
 		request({
-			url: 'game/betting',
+			url: 'k3/betting',
 			methods: 'post',
 			data: data
 		}).then(res => {
 			showLoading.value.loading = false
 			showToast.text(t('win.w_i20'))
 			upDateUserBalance()
-			if (actTypeInd.value == 1) {
-				getRecord()
-			} else {
-				getUserRec()
-			}
+			getBotRecord()
 			numBetRef.value.showBasic = false
 		}).catch(err => {
 			showToast.text(err.message)
@@ -432,11 +480,7 @@
 			page.value += 1
 		}
 
-		if (actTypeInd.value == 1) {
-			getRecord()
-		} else {
-			getUserRec()
-		}
+		getBotRecord()
 	}
 
 	const upDateUserBalance = () => {
@@ -451,11 +495,22 @@
 			showLoading.value.loading = false
 		})
 	}
+
+	const getBotRecord = (item, flag) => {
+		if (actTypeInd.value == 1) {
+			getRecord(item)
+		} else {
+			getUserRec()
+			getRecord(item, flag)
+		}
+	}
+
 	// 终于可以用了
 	onMounted(async () => {
 		if (timer.value) {
 			clearInterval(timer.value)
 		}
+
 		showLoading.value.loading = true
 		getData()
 		upDateUserBalance()
@@ -465,20 +520,15 @@
 	onShow(() => {
 		if (optionId.value > 0) {
 			getCurrentData()
-			if (actTypeInd.value == 1) {
-				getRecord()
-			} else {
-				getUserRec()
-			}
+			getBotRecord()
 			upDateUserBalance()
-
 		}
 	})
-	// onHide(() => {
-	// 	if (timer.value) {
-	// 		clearInterval(timer.value)
-	// 	}
-	// })
+	onHide(() => {
+		if (timer.value) {
+			clearInterval(timer.value)
+		}
+	})
 	onUnmounted(() => {
 		if (timer.value) {
 			clearInterval(timer.value)
@@ -487,20 +537,93 @@
 </script>
 
 <style lang="scss" scoped>
+	page {
+		background: #fff !important;
+	}
+
+
+	.userRecEl {
+		width: 100%;
+		overflow-x: scroll;
+		background-color: #fff;
+
+
+
+		.w35 {
+			width: 250rpx !important;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		$userWidth:1500rpx;
+
+		.tableHead {
+			background-color: #fbedf3;
+			padding: 20rpx;
+			display: flex;
+			width: $userWidth;
+
+			.userHead {
+				width: 150rpx;
+				font-weight: bold;
+				position: relative;
+				text-align: center;
+			}
+
+		}
+
+		.tableBody {
+			width: 100%;
+			width: 100%;
+
+			.usertableItem {
+				padding: 20rpx;
+				display: flex;
+				align-items: center;
+				width: $userWidth;
+
+				.userTd {
+					width: 150rpx;
+					position: relative;
+					text-align: center;
+				}
+
+
+			}
+
+
+
+		}
+	}
+
+	.shazi {
+		display: flex;
+		justify-content: center;
+		margin: 30rpx 0;
+		justify-content: space-between;
+		height: 200rpx;
+		align-items: center;
+		padding: 0 80rpx;
+	}
+
 	.botRecod {
+		font-size: 26rpx;
+
 		.tableHead {
 			background-color: #fbedf3;
 			padding: 20rpx;
 			display: flex;
 
 			view {
-				width: 22%;
+				width: 20%;
 				text-align: center;
 				font-weight: bold;
 			}
 
-			view:nth-child(1) {
-				width: 34%;
+			view:nth-child(1),
+			view:nth-child(5) {
+				width: 25%;
 			}
 		}
 
@@ -517,12 +640,13 @@
 
 				view {
 					text-align: center;
-					width: 22%;
-					padding: 20rpx;
+					width: 20%;
+					padding: 20rpx 0;
 				}
 
-				view:nth-child(1) {
-					width: 34%;
+				view:nth-child(1),
+				view:nth-child(5) {
+					width: 25%;
 				}
 
 				.dor {
@@ -531,66 +655,12 @@
 					border-radius: 50%;
 				}
 			}
-
-
-
-
-
 		}
 	}
 
 
 
-	.userRec {
-		width: 100%;
-		overflow-x: scroll;
-		background-color: #fff;
 
-
-
-		.tableHead {
-			background-color: #fbedf3;
-			padding: 20rpx;
-			display: flex;
-			width: 1300rpx;
-
-			.userHead {
-				width: 150rpx;
-				font-weight: bold;
-				position: relative;
-				text-align: center;
-			}
-
-			.money {
-				width: 250rpx;
-			}
-		}
-
-		.tableBody {
-			width: 100%;
-			width: 100%;
-
-			.usertableItem {
-				padding: 20rpx;
-				display: flex;
-				width: 1300rpx;
-
-				.userTd {
-					width: 150rpx;
-					position: relative;
-					text-align: center;
-				}
-
-				.money {
-					width: 250rpx;
-				}
-
-			}
-
-
-
-		}
-	}
 
 	.recTypeBtn {
 		view {
@@ -612,22 +682,22 @@
 	}
 
 	.perBox {
-		background: linear-gradient(90deg, #cd0103, #f64841);
 		box-shadow: 0 0 0.21333rem 0.02667rem rgba(187, 191, 205, .3);
 		border-radius: 20rpx;
-		background-color: #fff;
+		background-color: #f5f5f5;
 		padding: 20rpx 30rpx;
 		margin-top: 110rpx;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		color: #fff;
+		color: #000;
 
 		.mglr5 {
 			padding: 5rpx 10rpx;
-			background: rgba(0, 0, 0, 0.2);
-			color: #fff;
+			background: rgba(0, 0, 0, 0.1);
+			color: #00b977;
 			height: 100%;
+			font-weight: bold;
 		}
 	}
 
@@ -668,54 +738,5 @@
 				}
 			}
 		}
-	}
-
-	.numBg1,
-	.numBg3,
-	.numBg7,
-	.numBg9,
-		{
-		background-color: #5cba47;
-		color: #5cba47;
-	}
-
-	.numBg2,
-	.numBg4,
-	.numBg6,
-	.numBg8,
-		{
-		background-color: #fb4e4e;
-		color: #fb4e4e;
-	}
-
-	.numBg5 {
-		background-color: #db5fd1;
-		color: #db5fd1;
-	}
-
-
-
-	.num1,
-	.num3,
-	.num7,
-	.num9,
-		{
-		color: #5cba47;
-	}
-
-	.num2,
-	.num4,
-	.num6,
-	.num8,
-		{
-		color: #fb4e4e;
-	}
-
-	.num5 {
-		color: #5cba47;
-	}
-
-	.num0 {
-		color: #db5fd1;
 	}
 </style>

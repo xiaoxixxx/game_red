@@ -102,7 +102,7 @@
 				</view>
 			</view>
 			<view class="flex mt40">
-				<view style="width: 250rpx;" class="text_center maskBtns">
+				<view style="width: 250rpx;" class="text_center maskBtns" @click="showBasic = false">
 					{{t('all.a_c1')}}
 				</view>
 				<view style="flex: 1;" class="text_center maskBtns" :style="{background:maskColorStyle.mainColor}"

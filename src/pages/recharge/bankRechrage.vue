@@ -4,10 +4,10 @@
 		<view class="pdlr45 mt70">
 
 			<view class="mt55">
-				<view class="topBox center flex-col" >
+			<!-- 	<view class="topBox center flex-col" >
 					<view class="topItem f26">{{t('all.b_b1')}}</view>
 					<view class="mt35 f55" style="color: #fff;">{{currency}} {{user.balance}} </view>
-				</view>
+				</view> -->
 
 				<view class="mt40 inputItem">
 					<text>{{currency}}</text>
@@ -65,13 +65,12 @@
 				<!-- <view class="btns" :style="inpVal>0 && nameInd>-1? choStyle:noStyle" @click="submitHandle">
 					{{t('wr.r_r3')}}
 				</view> -->
-
-				<view class=" center l_inpS mt40 l_inpBg pdlr30 text_white f32" style="margin-top:114rpx"
+				<view class=" center l_inpS mt40 l_inpBg pdlr30 text_white f32 " style="margin-top:114rpx"
 					:style="{background:store.$state.contentColor}" @click="submitHandle">
 						{{t('recharge.r_r6')}}
 				</view>
+				<view style="height: 200rpx;"></view>
 			</view>
-			<view style="height: 100rpx;"></view>
 			<Loading ref="showLoading"></Loading>
 		</view>
 	</view>
@@ -106,7 +105,7 @@
 		color: '#fff'
 	}
 	const noStyle = {
-		color: store.$state.contentColor
+		// color: store.$state.contentColor
 	}
 
 
@@ -203,6 +202,11 @@
 </script>
 
 <style lang="scss" scoped>
+	// .l_inpBg{
+	// 	position: fixed;
+	// 	width: 600rpx;
+	// 	bottom: 50rpx;
+	// }
 	page{
 		background-color: #f5f5f5;
 	}
@@ -245,7 +249,7 @@
 
 		.chooseItem {
 			width: 90%;
-			background-color: #fff;
+			background-color: #ccc;
 			height: 100rpx;
 			border-radius: 15rpx;
 			margin-bottom: 20rpx;

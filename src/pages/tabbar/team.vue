@@ -67,7 +67,7 @@
 					<view class="f25">{{botData.C.invest_amount}}</view>
 				</view>
 
-				<view class="table_head " style="border-bottom: 1rpx solid #eee;">
+			<!-- 	<view class="table_head " style="border-bottom: 1rpx solid #eee;">
 					<view>{{t('game.g_a5')}}</view>
 					<view class="f25">{{botData.D.number}}</view>
 					<view class="f25">{{botData.D.invest_amount}}</view>
@@ -83,7 +83,7 @@
 					<view>{{t('game.g_a7')}}</view>
 					<view class="f25">{{botData.F.number}}</view>
 					<view class="f25">{{botData.F.invest_amount}}</view>
-				</view>
+				</view> -->
 
 				<view class="flex mt16 mb18 mr31" style="flex-direction: row-reverse;"
 					@click="jumpPage('../mine/teamDetail')">

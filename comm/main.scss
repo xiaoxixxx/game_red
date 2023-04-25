@@ -8,6 +8,16 @@ ol li {
 	list-style: none;
 }
 
+.nutbig-shakedice .page {
+	background-color: #e01a20 !important;
+	border: none !important;
+	// width: 60rpx !important;
+	// height: 60rpx !important;
+}
+.nutbig-shakedice .page>span {
+	background-color: #fff !important;
+	
+}
 @for $i from 1 to 100 {
 	.mgtb#{$i} {
 		margin-top: #{$i}rpx;

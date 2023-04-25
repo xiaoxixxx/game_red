@@ -54,7 +54,7 @@
 				pagePath: '/pages/tabbar/news',
 			}, {
 				text: '',
-				iconPath: '/static/tabbar/invite.png',
+				iconPath: '/static/tabbar/invite12.png',
 				pagePath: '/pages/tabbar/team'
 			}, {
 				text: 'wallet',

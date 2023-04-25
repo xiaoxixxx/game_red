@@ -74,18 +74,18 @@
 			name: t('mine.m_t9'),
 			value: '3'
 		},
-		{
-			name: t('game.g_a5'),
-			value: '4'
-		},
-		{
-			name: t('game.g_a6'),
-			value: '5'
-		},
-		{
-			name: t('game.g_a7'),
-			value: '6'
-		},
+		// {
+		// 	name: t('game.g_a5'),
+		// 	value: '4'
+		// },
+		// {
+		// 	name: t('game.g_a6'),
+		// 	value: '5'
+		// },
+		// {
+		// 	name: t('game.g_a7'),
+		// 	value: '6'
+		// },
 	]
 	const typeInd = ref(0)
 

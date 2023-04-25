@@ -18,8 +18,12 @@
 						<view class="f36 text_white" style="font-weight: 500;">
 							username:{{pageData.phone}}
 						</view>
-						<view class="text_white mt20">
+						<view class="text_white mt20 flex col_center">
 							ID:{{pageData.id}}
+							
+							<view v-if="vipNumber>-1">
+								<image :src="vipList[vipNumber]" mode="widthFix" style="width: 120rpx;" class="ml20"></image>
+							</view>
 						</view>
 					
 					</view>
@@ -160,6 +164,19 @@
 			url
 		})
 	}
+	
+	const vipList = [
+		'/static/vip/0.png',
+		'/static/vip/1.png',
+		'/static/vip/2.png',
+		'/static/vip/3.png',
+		'/static/vip/4.png',
+		'/static/vip/5.png',
+		'/static/vip/6.png',
+		'/static/vip/7.png',
+		'/static/vip/8.png',
+	]
+	
 	const pageData = ref({
 		phone: "", //手机号
 		balance: 0, //余额
@@ -170,6 +187,8 @@
 	})
 	const appData = ref({})
 	const showLoading = ref(null)
+	
+	const vipNumber = ref(-1)
 	const getData = () => {
 
 		request({
@@ -178,6 +197,11 @@
 			data: {}
 		}).then(res => {
 			pageData.value = res
+			try{
+					vipNumber.value = res.vip.number
+			}catch(e){
+				//TODO handle the exception
+			}
 		})
 
 		request({

@@ -27,6 +27,7 @@
 					style="height: 100%;width: 100%;color: #333;" v-model="formData.account_holder">
 			</view>
 
+		<view v-if="COUNTRY.url !== 'api.nigeria999.com'">
 			<view class="mt55">
 				{{t('setting.s_b6')}}
 			</view>
@@ -34,6 +35,7 @@
 				<input type="text" :placeholder="t('setting.s_b6')" placeholder-class="inpPlaceholder"
 					style="height: 100%;width: 100%;color: #333;" v-model="formData.other_param_1">
 			</view>
+		</view>
 
 			<view class="mt38">
 				<view class="pl14">
@@ -65,6 +67,7 @@
 <script setup>
 	import topNav from "@/components/topNav/topNav.vue"
 	import request from '../../../comm/request.ts';
+	import COUNTRY from '../../../setting.js';
 	import {
 		userStore
 	} from "@/store/themeNum.js";

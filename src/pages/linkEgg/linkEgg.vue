@@ -8,7 +8,7 @@
 		</view>
 		<view class="title">Red Envelopes</view>
 
-		<view class="center" style="margin-top: 570rpx;">
+		<view class="center" :style="{marginTop:newTop +'vw'}">
 			<view class="money center">
 				{{pageData.info?.price}} {{pageData.currency}}
 			</view>
@@ -38,26 +38,27 @@
 			}
 		}).then(res => {
 			pageData.value = res
-		}).catch(err=>{
+		}).catch(err => {
 			uni.showToast({
 				title: err.message,
 				icon: 'none'
 			})
 		})
 	}
-	const jumpPage = url=>{
+
+	const jumpPage = url => {
 		uni.reLaunch({
 			url
 		})
 	}
 	const getPro = () => {
-		if(!uni.getStorageSync('token')){
+		if (!uni.getStorageSync('token')) {
 			uni.navigateTo({
-				url:'../login/login'
+				url: '../login/login'
 			})
 			return false
 		}
-		if(!pageData.value.info){
+		if (!pageData.value.info) {
 			return false
 		}
 
@@ -81,9 +82,14 @@
 				icon: 'none'
 			})
 			uni.navigateTo({
-				url:"/"
+				url: "/"
 			})
 			getInfo()
+		}).catch(e => {
+			uni.showToast({
+				title: e.message,
+				icon: 'none'
+			})
 		})
 	}
 	const key = ref("")
@@ -91,17 +97,37 @@
 	onLoad(e => {
 		if (e.key) {
 			key.value = e.key
-			sessionStorage.setItem('link',e.key)
+			sessionStorage.setItem('link', e.key)
 			getInfo()
 		}
+		getSysInfo()
 	})
+	const newTop = ref(30)
+	const getSysInfo = () => {
+		uni.getSystemInfo({
+			success: res => {
+				if (res.windowHeight > 810) {
+					newTop.value = 70;
+				} else if (res.windowHeight <= 810 && res.windowHeight >= 750) {
+					newTop.value = 70;
+				} else if (res.windowHeight < 750 && res.windowHeight >= 710) {
+					newTop.value = 62;
+				} else if (res.windowHeight < 710 && res.windowHeight >= 610) {
+					newTop.value = 50;
+				} else {
+					newTop.value = 35;
+				}
+			}
+		});
+	}
 	// 
 </script>
 
 
 <style lang="scss" scoped>
 	.pageBg {
-		min-height: 100vh;
+		min-height: 100vw;
+		height: 100vh;
 		background: url('../../static/linkEgg/eggBg.png') no-repeat 100%/100%;
 	}
 
@@ -116,8 +142,8 @@
 
 	.money {
 		background: url('../../static/linkEgg/egg.png') no-repeat 100%/100%;
-		height: 250rpx;
-		width: 250rpx;
+		height: 300rpx;
+		width: 300rpx;
 		font-size: 42rpx;
 		font-weight: 500;
 		color: #DB1100;
@@ -128,8 +154,7 @@
 		height: 125rpx;
 		background: linear-gradient(180deg, #FFFFE1 0%, #F5CB7E 100%);
 		border-radius: 63rpx;
-		margin: 315rpx auto 0;
-
+		margin: 100rpx auto 0;
 		font-size: 40rpx;
 		font-family: PingFang SC;
 		font-weight: 500;
