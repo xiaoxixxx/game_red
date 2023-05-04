@@ -113,11 +113,10 @@
 	.wrapper {
 		display: flex;
 		height: 100%;
-		justify-content: center;
+		// justify-content: center;
 		padding: 0 50rpx;
 	
 		.content {
-			margin-top: 400rpx;
 			display: flex;
 			flex-direction: column;
 			align-items: center;

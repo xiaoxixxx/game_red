@@ -108,7 +108,7 @@
 			</view>
 			
 			<view class="center mt50">
-				<qrcode-vue :value="inviteUrl" v-if="inviteUrl" :size="163" level="H" />
+				<qrcode-vue :value="inviteUrl" v-if="inviteUrl" :size="163" level="H" @longtap = "saveHandle" />
 			</view>
 			<view style="height: 200rpx;"></view>
 		</view>
@@ -193,7 +193,6 @@
 		}).then(res => {
 			inviteUrl.value = window.location.protocol + "//" + window.location.host +
 				"/\#/\?aa=" + res.invite_code
-			// pageData.value = res
 		})
 	}
 	onMounted(() => {
@@ -203,6 +202,10 @@
 			showLoading.value.loading = false
 		}, 1500)
 	})
+	
+	const saveHandle = ()=>{
+		showToast.text("123123")
+	}
 	// 终于可以用了
 	onShow(() => {
 		getData()
