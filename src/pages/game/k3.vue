@@ -2,13 +2,17 @@
 	<view>
 		<view class="pagePad between  nav">
 			<view style="width: 50rpx;height: 50rpx;">
-				<image src="/static/images/back.png" style="width: 100%;height: 100%;" @click="back"></image>
+				<image src="../../static/images/back.png" style="width: 100%;height: 100%;" @click="back"></image>
 			</view>
 			<view>
-				<image :src="COUNTRY.indexLogo" style="width: 320rpx;height: 80rpx;"></image>
+				
+				<image :src="COUNTRY.indexLogo" style="width: 320rpx;height: 80rpx;" v-if="COUNTRY.indexLogo"></image>
+				<view class="center f60 text_white" style="width: 320rpx;height: 80rpx;" v-else-if="COUNTRY.indexTitle">
+					{{COUNTRY.indexTitle}}
+				</view>
 			</view>
 			<view style="width: 50rpx;height: 50rpx;">
-				<image src="@/static/images/audio.webp" style="width: 50rpx;height: 50rpx;"
+				<image src="../../static/images/audio.webp" style="width: 50rpx;height: 50rpx;"
 					@tap="jumpPage('../mine/service')"></image>
 			</view>
 		</view>
@@ -116,7 +120,7 @@
 		</view>
 
 		<!-- period rec -->
-		<view class="botRecod mt30" v-if="actTypeInd == 1">
+		<view class="botRecod mt30" id="botRecod" v-if="actTypeInd == 1">
 			<view class="tableHead">
 				<view>{{t('win.w_i11')}}</view>
 				<view>{{t('add1.a_a10')}}</view>
@@ -739,4 +743,6 @@
 			}
 		}
 	}
+	
+
 </style>

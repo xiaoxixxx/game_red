@@ -11,17 +11,17 @@
 
 		<view class="flex between " style="flex-wrap: wrap;">
 
-			<view v-for="(item,index) in listData" class="topItem" @click="addItem(item)" :style="selectList.includes(item)?ChoStyle:''">
+			<view v-for="(item,index) in listData" class="topItem" @click="addItem(item)"
+				:style="selectList.includes(item)?ChoStyle:''">
 				<view class="f28">{{item.name}}</view>
-				<view class="mt5 f20 textHiddenOne"  >The Odds{{item.show_odds}}</view>
-				
+				<view class="mt5 f20 textHiddenOne">The Odds{{item.show_odds}}</view>
+
 				<IconFont name="Check" v-if="selectList.includes(item)"
 					class="phoneCheck animate__animated animate__fadeIn " color="#f4453f"></IconFont>
 			</view>
 
+
 		</view>
-
-
 
 		<view class="betMask animate__animated animate__slideInUp  " v-show="showBasic">
 			<view class="maskContent ">
@@ -30,7 +30,7 @@
 					<view class="flex   mb20">
 						<view class=" flex col_center" style="flex: 1; flex-wrap: wrap;">
 							<view class=" mr40 nameItem" style=";padding: 5rpx 0 ;">choosed</view>
-							<view v-for="(item,index) in selectList" class="nameItem  nameItem1" >{{item.name}}</view>
+							<view v-for="(item,index) in selectList" class="nameItem  nameItem1">{{item.name}}</view>
 						</view>
 					</view>
 					<view class="flex row_center ">
@@ -129,7 +129,7 @@
 	} from "@/store/themeNum.js";
 	export default defineComponent({
 		props: ['titleInd', 'topData', 'userBalance', 'gameId', 'showLoading', 'betMultpile', 'betAmount',
-			'optionData', 'times', 'bettingRule', 'lock_time','listData'
+			'optionData', 'times', 'bettingRule', 'lock_time', 'listData'
 		],
 		setup(props, {
 			emit
@@ -175,7 +175,7 @@
 				background: '#ccc',
 				'box-shadow': 'none'
 			})
-	
+
 			const amountList = ref(props.betAmount)
 
 			const saleRule = props.bettingRule
@@ -199,12 +199,12 @@
 					showToast.text('Insufficient balance, please recharge')
 					return false
 				}
-				let ids = selectList.value.map(item=>{
+				let ids = selectList.value.map(item => {
 					return item.id
 				})
 				const data = {
 					// periodId: props.gameId,
-					optionId:ids,
+					optionId: ids,
 					amount: amount * selectList.value.length
 				}
 				selectList.value = []
@@ -242,8 +242,8 @@
 			const selectList = ref([])
 			// 区块数据
 			const listData = props.listData
-			
 			const addItem = item => {
+			
 				if (selectList.value.includes(item)) {
 					if (selectList.value.length == 1) {
 						selectList.value = []
@@ -263,8 +263,8 @@
 				showBasic.value = false
 			}
 			const ChoStyle = {
-				'color':'#fff',
-				'background':'#ccc'
+				'color': '#fff',
+				'background': '#ccc'
 			}
 			return {
 				numList,
@@ -296,8 +296,7 @@
 				listData,
 				selectList,
 				addItem,
-				changeMultiple
-
+				changeMultiple,
 			}
 		},
 	})
@@ -317,7 +316,8 @@
 		border-radius: 10rpx;
 		position: relative;
 	}
-	.phoneCheck{
+
+	.phoneCheck {
 		position: absolute;
 		top: 5rpx;
 		right: 10rpx;
@@ -441,6 +441,7 @@
 		justify-content: center;
 		color: #fff;
 		z-index: 999;
+
 		.mglr5 {
 			height: 400rpx;
 			width: 200rpx;

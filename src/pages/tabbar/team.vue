@@ -106,9 +106,9 @@
 					style="padding:18rpx 39rpx ; border-radius: 50rpx;" @tap="copyHandle(inviteUrl)">{{t('all.a_c3')}}
 				</view>
 			</view>
-			
+
 			<view class="center mt50">
-				<qrcode-vue :value="inviteUrl" v-if="inviteUrl" :size="163" level="H" @longtap = "saveHandle" />
+				<qrcode-vue :value="inviteUrl" v-if="inviteUrl" :size="163" level="H" @longpress="imgClick" />
 			</view>
 			<view style="height: 200rpx;"></view>
 		</view>
@@ -121,6 +121,8 @@
 	import tqbTabbar from "@/components/botTabbar/botTabbar.vue"
 	import topNav from "@/components/topNav/topNav.vue"
 	import QrcodeVue from 'qrcode.vue'
+
+	import Qrcode from 'qrcode'
 	import request from '../../../comm/request.ts';
 	import {
 		userStore
@@ -136,6 +138,8 @@
 	import {
 		onMounted
 	} from "vue";
+
+
 	const store = userStore();
 	const {
 		toClipboard
@@ -148,6 +152,30 @@
 		t
 	} = useI18n();
 	const inviteUrl = ref("")
+
+	const imgClick = () => {
+		const url = inviteUrl.value
+		Qrcode.toDataURL(url, function(err, url) {
+			if (err) throw err;
+			const img = new Image();
+			img.src = url;
+			let imageArray = []
+			imageArray.push(img.src)
+			uni.previewImage({
+				current: 0, //索引，为了点哪个图片显示那张图片，如果不写则不管点击那张图片都会显示集合第一张
+				urls: imageArray, // 图片路径集合
+				longPressActions: {
+					// itemList: ['发送给朋友', '保存图片', '收藏'],
+					success: function(data) {},
+					fail: function(err) {
+						console.log(err.errMsg);
+					}
+				}
+			});
+		});
+
+
+	}
 	const copyHandle = async (data) => {
 		try {
 			await toClipboard(data)
@@ -193,8 +221,10 @@
 		}).then(res => {
 			inviteUrl.value = window.location.protocol + "//" + window.location.host +
 				"/\#/\?aa=" + res.invite_code
+			// pageData.value = res
 		})
 	}
+
 	onMounted(() => {
 
 		showLoading.value.loading = true
@@ -202,10 +232,6 @@
 			showLoading.value.loading = false
 		}, 1500)
 	})
-	
-	const saveHandle = ()=>{
-		showToast.text("123123")
-	}
 	// 终于可以用了
 	onShow(() => {
 		getData()
