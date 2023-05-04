@@ -5,7 +5,10 @@
 			<view style="width: 50rpx;">
 			</view>
 			<view style="flex:1" class="center">
-				<image :src="COUNTRY.indexLogo" style="width: 320rpx;height: 80rpx;"></image>
+				<image :src="COUNTRY.indexLogo" style="width: 320rpx;height: 80rpx;" v-if="COUNTRY.indexLogo"></image>
+				<view class="center f60 text_white" style="width: 320rpx;height: 80rpx;" v-else-if="COUNTRY.indexTitle">
+					{{COUNTRY.indexTitle}}
+				</view>
 			</view>
 			<view>
 				<!-- <image :src="COUNTRY.indexLogo" style="width: 320rpx;height: 80rpx;"></image> -->
@@ -50,7 +53,7 @@
 			<view class="bounsBox">
 				<view class="bounsBg">
 					<view class="center text_white f40 bounsMoney" style="">
-						<text class="pb5 pr10"> {{pageData.total_betting}}</text> <text class="f40">{{currency}}</text>
+						<text class="pb5 pr10"> {{pageData.total_bonus}}</text> <text class="f40">{{currency}}</text>
 					</view>
 				</view>
 			</view>
@@ -165,6 +168,14 @@
 				</view>
 			</div>
 		</nut-overlay>
+
+		<nut-drag :boundary="{ top:50, left: 50, bottom:50, right: 50 }" :attract="true"
+			:style="{ top: '450px', right: '10px' }">
+			<view class="">
+				<image class="actItem " :src="COUNTRY.indexLotterylogo" mode="widthFix"
+					style="width: 100rpx;height: 100rpx;margin-top: 0;" v-if="showDraw" @click="changePage('../act/drawPan')"></image>
+			</view>
+		</nut-drag>
 	</view>
 </template>
 
@@ -192,6 +203,7 @@
 		t
 	} = useI18n()
 
+	const showDraw = ref(false)
 	const botDataInd = ref(0)
 	const botDataList = ref([{
 			name: t('game.g_b9'),
@@ -249,6 +261,11 @@
 		minutes: '00',
 		seconds: 0,
 	})
+	const changePage = url=>{
+		uni.navigateTo({
+			url
+		})
+	}
 	const times = ref(0)
 	// 计时器
 	const startTimer = () => {
@@ -365,6 +382,14 @@
 			methods: 'get',
 		}).then(res => {
 			appData.value = res
+		})
+
+		request({
+			url: 'activity/status',
+			methods: 'get',
+		}).then(res => {
+			res.lottery.status == 1 ? showDraw.value = true : ''
+
 		})
 
 	}

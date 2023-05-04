@@ -323,3 +323,35 @@ border: 5rpx solid #faa09d;
 			transform: translateY(20rpx);
 		}
 	}
+	.wrapper {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+		.content {
+			display: flex;
+			flex-direction: column;
+			width: 640rpx;
+			height: 530rpx;
+			border-radius: 30rpx;
+		}
+	
+		.normalContent {
+			width: 640rpx;
+			height: 530rpx;
+			border-radius: 30rpx;
+			padding: 20rpx 30rpx;
+			background-color: #fff;
+			overflow: scroll;
+		}
+	
+		.recBtn {
+			background: linear-gradient(0deg, #FEC65C 0%, #FFF3AC 100%);
+			border-radius: 50rpx;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 25rpx 130rpx;
+		}
+	}
+	

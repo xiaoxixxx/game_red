@@ -4,7 +4,7 @@ import {
 } from "@/store/themeNum.js";
 const store = userStore();
 
-let dev = 1
+let dev = 3
 let COUNTRY = {
 	url: '',
 	qianzhui: '',
@@ -12,7 +12,9 @@ let COUNTRY = {
 	title: "",
 	icon: "",
 	indexLogo: "",
-	lotterImg:""
+	lotterImg:"",
+	indexTitle:"",
+	indexLotterylogo:"/static/act/indexLotteryIcon.png" //转盘icon
 }
 
 // /api  切换page.jsonZhong  title  
@@ -36,6 +38,7 @@ if (dev == 1) {
 	COUNTRY.lang = "in"
 	COUNTRY.title = ""
 	COUNTRY.icon = ""
+	COUNTRY.indexTitle = "369club"
 	COUNTRY.indexLogo = ""
 	COUNTRY.lotterImg = "url('/static/act/go.png')"
 } else if (dev == 4) {
@@ -45,7 +48,7 @@ if (dev == 1) {
 	COUNTRY.icon = "/static/titleIcon/999.jpg"
 	COUNTRY.indexLogo = "/static/titleIcon/999Lang.png"
 	COUNTRY.lotterImg = "url('/static/act/999.png')"
-}
+} 
 
 
 COUNTRY.HOST = `https://${COUNTRY.url}` + '/api/'

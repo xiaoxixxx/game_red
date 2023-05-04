@@ -146,10 +146,9 @@
 	}
 	// 剩余抽奖次数
 	const startTurns = () => {
-		console.log('123');
 		if (topData.value.num == 0) {
 			uni.showToast({
-				title: "If you don't invite your friends to recharge and invest together, you can't participate in the turntable activity.",
+				title: "Recharge yourself or invite your friends to get a chance to draw a lucky draw.",
 				icon: 'none'
 			})
 			return false

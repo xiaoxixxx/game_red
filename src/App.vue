@@ -40,12 +40,24 @@
 	}
 
 	page {
-		font-family: Avenir,Helvetica,Arial,sans-serif;
+		font-family: Avenir, Helvetica, Arial, sans-serif;
 		background-color: #f5f5f5;
 		color: #2c3e50;
 		font-size: 30rpx;
 		animation: .3s linear all;
+
 		// text-transform: capitalize;
+	}
+	uni-page{
+		display: webkit-box;
+		overflow: auto;
+		paddingb-bottom: 10rpx;
+		margin-bottom: -10rpx; // overflow: hidden;
+		font-family: SF UI Text;
+	}
+	::-webkit-scrollbar {
+		display: none;
+
 	}
 
 	.secondClo {
@@ -81,9 +93,10 @@
 		color: #000 !important;
 	}
 
-	.drawTable-name{
+	.drawTable-name {
 		color: #000 !important;
 	}
+
 	// .turntable{
 	// 	background-color: #B3DDF7;
 	// 	border-radius: 30%;

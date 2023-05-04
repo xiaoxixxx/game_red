@@ -49,6 +49,11 @@
 							<text v-if="item.pay_status ==3" class="error">{{t('rec.r_w12')}}</text>
 						</view>
 					</view>
+					
+					<view class="vvItem">
+						<view class="f26">{{t('rec.r_r3')}}</view>
+						<view class="">{{ item.createTime }}</view>
+					</view>
 				</view>
 			</z-paging>
 		</view>

@@ -12,7 +12,7 @@
 		</view>
 		<view class="pdlr30 pt33" v-if="hasAct">
 
-			<view class="newsItem mb30 " v-if="showSign">
+			<view class="newsItem mb30 newsItem1" v-if="showSign">
 				<view class="f40 textHiddenThree pt30" style="width: 380rpx; text-align: center;">
 					{{t('game.g_a9')}} <br> {{t('game.g_a10')}}
 				</view>
@@ -27,7 +27,7 @@
 				</view>
 			</view>
 
-			<view class="newsItem mb30 " v-if="showDraw	">
+			<view class="newsItem mb30 newsItem2" v-if="showDraw	">
 
 				<view style="height: 80rpx;"></view>
 				<view class="flex">
@@ -126,12 +126,12 @@
 		color: #f3fbe2;
 	}
 
-	.newsItem:nth-child(1) {
+	.newsItem1{
 		background: url('/src/static/act/signBg.png') no-repeat 100%/100%;
 		height: 230rpx;
 	}
 
-	.newsItem:nth-child(2) {
+	.newsItem2 {
 		background: url('/src/static/act/lottery.png') no-repeat 100%/100%;
 		height: 230rpx;
 	}

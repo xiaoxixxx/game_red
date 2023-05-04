@@ -92,7 +92,7 @@
 		onLoad
 	} from "@dcloudio/uni-app";
 	import {
-		showToast 
+		showToast
 	} from '@nutui/nutui';
 	import {
 		computed,
@@ -105,6 +105,10 @@
 	const {
 		t
 	} = useI18n();
+
+
+	
+
 	const store = userStore();
 
 	const showPwd = ref(true)
@@ -218,11 +222,11 @@
 		let tempReg = country_code.value.preg.replace('/', '').replace('/', '')
 		let phoneReg = new RegExp(tempReg);
 		if (!phoneReg.test(loginForm.value.phone)) {
-			showToast .text(t('login.l_l3'))
+			showToast.text(t('login.l_l3'))
 			return false
 		}
 		if (loginForm.value.password.length < 6 || loginForm.value.password.length > 24) {
-			showToast .text(t('login.l_l4'))
+			showToast.text(t('login.l_l4'))
 			return false
 		}
 		showLoading.value.loading = true
@@ -239,13 +243,13 @@
 			data: loginForm.value
 		}).then(res => {
 			showLoading.value.loading = false
-			showToast .text(t('login.l_l5'))
-			if(sessionStorage.getItem('link')){
+			showToast.text(t('login.l_l5'))
+			if (sessionStorage.getItem('link')) {
 				let key = sessionStorage.getItem('link')
 				uni.clearStorage()
 				uni.setStorageSync('token', res.accessToken)
 				uni.navigateTo({
-					url:'../linkEgg/linkEgg?key='+key
+					url: '../linkEgg/linkEgg?key=' + key
 				})
 				return false
 			}
@@ -323,9 +327,10 @@
 </script>
 
 <style lang="scss" scoped>
-	page{
+	page {
 		background: #fff;
 	}
+
 	.listItem2 {
 		font-size: 30rpx;
 		padding: 10rpx 20rpx;
@@ -362,7 +367,7 @@
 		padding: 5rpx 20rpx;
 	}
 
-	.signBtn{
+	.signBtn {
 		border: 5rpx solid #faa09d;
 		color: #f4453f;
 	}

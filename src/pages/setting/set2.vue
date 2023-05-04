@@ -103,9 +103,11 @@
 		selectedValue,
 		selectedOptions
 	}) => {
+	
 		// desc.value = selectedValue.join(',');
 		bName.value = selectedOptions[0].text
 		formData.value.bankId = selectedOptions[0].value
+		show.value = false
 	}
 
 	const canEdit = ref(false)

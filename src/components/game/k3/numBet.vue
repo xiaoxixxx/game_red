@@ -176,12 +176,7 @@
 				'box-shadow': 'none'
 			})
 	
-			const amountList = ref([
-				'100',
-				'1000',
-				'10000',
-				'10000',
-			])
+			const amountList = ref(props.betAmount)
 
 			const saleRule = props.bettingRule
 

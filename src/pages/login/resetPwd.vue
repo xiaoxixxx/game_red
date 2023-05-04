@@ -188,7 +188,8 @@
 		timer.value = setInterval(() => {
 			if (hasSecond.value == 0) {
 				clearInterval(timer.value)
-				hasSecond = false
+				hasSend = false
+				hasSecond = 59
 			}
 			hasSecond.value--;
 		}, 1000)
