@@ -67,7 +67,7 @@
 					<view class="f25">{{botData.C.invest_amount}}</view>
 				</view>
 
-			<!-- 	<view class="table_head " style="border-bottom: 1rpx solid #eee;">
+				<!-- 	<view class="table_head " style="border-bottom: 1rpx solid #eee;">
 					<view>{{t('game.g_a5')}}</view>
 					<view class="f25">{{botData.D.number}}</view>
 					<view class="f25">{{botData.D.invest_amount}}</view>
@@ -106,7 +106,10 @@
 					style="padding:18rpx 39rpx ; border-radius: 50rpx;" @tap="copyHandle(inviteUrl)">{{t('all.a_c3')}}
 				</view>
 			</view>
-
+			
+			<view class="center mt50">
+				<qrcode-vue :value="inviteUrl" v-if="inviteUrl" :size="163" level="H" />
+			</view>
 			<view style="height: 200rpx;"></view>
 		</view>
 		<tqbTabbar :actIndex="2"></tqbTabbar>
@@ -117,6 +120,7 @@
 <script setup>
 	import tqbTabbar from "@/components/botTabbar/botTabbar.vue"
 	import topNav from "@/components/topNav/topNav.vue"
+	import QrcodeVue from 'qrcode.vue'
 	import request from '../../../comm/request.ts';
 	import {
 		userStore
@@ -129,7 +133,9 @@
 		onShow,
 		onLoad
 	} from "@dcloudio/uni-app";
-import { onMounted } from "vue";
+	import {
+		onMounted
+	} from "vue";
 	const store = userStore();
 	const {
 		toClipboard
@@ -186,12 +192,12 @@ import { onMounted } from "vue";
 			data: {}
 		}).then(res => {
 			inviteUrl.value = window.location.protocol + "//" + window.location.host +
-				"/\#/pages/login/register\?code=" + res.invite_code
+				"/\#/\?aa=" + res.invite_code
 			// pageData.value = res
 		})
 	}
 	onMounted(() => {
-		
+
 		showLoading.value.loading = true
 		setTimeout(() => {
 			showLoading.value.loading = false

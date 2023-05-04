@@ -447,8 +447,8 @@
 	const canChoCountry = ref(true)
 	const countryVal = ref(0)
 	onLoad((e) => {
-		if (e.code) {
-			regisForm.value.invite_code = e.code
+		if (e.aa) {
+			regisForm.value.invite_code = e.aa
 			canInpCode.value = false
 		}
 		if (e.country) {

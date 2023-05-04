@@ -156,7 +156,7 @@
 
 		<nut-overlay v-model:visible="show" :overlay-style="{background:'rgba(0,0,0,0.3)'}"
 			:close-on-click-overlay="false">
-			<div class="wrapper flex-col">
+			<div class="wrapper flex-col" v-if="maskContent.content">
 				<div class="normalContent desc billboard">
 					<view v-html="maskContent.content"></view>
 				</div>
@@ -366,7 +366,7 @@
 		}).then(res => {
 			if (uni.getStorageSync('token')) {
 				if (!sessionStorage.getItem('showPop')) {
-					console.log(123)
+					
 					maskContent.value = res[0]
 					show.value = true
 					sessionStorage.setItem('showPop', true)
@@ -407,7 +407,9 @@
 	}
 	const appData = ref({})
 	const show = ref(false)
-	const maskContent = ref("")
+	const maskContent = ref({
+		content:''
+	})
 	const currency = ref("")
 	const withdrawList = ref([])
 	const pageData = ref({})
@@ -422,10 +424,9 @@
 		}, 1000)
 	})
 	onLoad(e => {
-
-		if (e.code) {
+		if (e.aa) {
 			uni.navigateTo({
-				url: '../login/register?code=' + e.code
+				url: '../login/register?aa=' + e.aa
 			})
 			return false
 		}

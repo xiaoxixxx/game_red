@@ -117,7 +117,7 @@
 			data: {}
 		}).then(res => {
 			inviteUrl.value = window.location.protocol + "//" + window.location.host +
-				"/\#/pages/login/register\?code=" + res.invite_code
+				"/\#/\?aa=" + res.invite_code
 			inveCode.value = res.invite_code
 		})
 		
