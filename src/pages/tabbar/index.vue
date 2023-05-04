@@ -1,7 +1,6 @@
 <template>
 	<view>
 		<view class="pagePad between  nav" style="height: 100rpx;">
-
 			<view style="width: 50rpx;">
 			</view>
 			<view style="flex:1" class="center">
@@ -158,7 +157,7 @@
 		<nut-overlay v-model:visible="show" :overlay-style="{background:'rgba(0,0,0,0.3)'}"
 			:close-on-click-overlay="false">
 			<div class="wrapper flex-col">
-				<div class="normalContent desc">
+				<div class="normalContent desc billboard">
 					<view v-html="maskContent.content"></view>
 				</div>
 
@@ -173,7 +172,8 @@
 			:style="{ top: '450px', right: '10px' }">
 			<view class="">
 				<image class="actItem " :src="COUNTRY.indexLotterylogo" mode="widthFix"
-					style="width: 100rpx;height: 100rpx;margin-top: 0;" v-if="showDraw" @click="changePage('../act/drawPan')"></image>
+					style="width: 100rpx;height: 100rpx;margin-top: 0;" v-if="showDraw"
+					@click="changePage('../act/drawPan')"></image>
 			</view>
 		</nut-drag>
 	</view>
@@ -261,7 +261,7 @@
 		minutes: '00',
 		seconds: 0,
 	})
-	const changePage = url=>{
+	const changePage = url => {
 		uni.navigateTo({
 			url
 		})
@@ -364,14 +364,16 @@
 			url: 'home/alert',
 			methods: 'get'
 		}).then(res => {
-			try {
-				if (res.length > 0) {
+			if (uni.getStorageSync('token')) {
+				if (!sessionStorage.getItem('showPop')) {
+					console.log(123)
 					maskContent.value = res[0]
 					show.value = true
-					maskInd.value = 0
+					sessionStorage.setItem('showPop', true)
 				}
-			} catch (e) {
-				//TODO handle the exception
+			} else {
+				maskContent.value = res[0]
+				show.value = true
 			}
 		})
 
@@ -573,5 +575,10 @@
 		background-color: #fff;
 		box-shadow: 0 0.02667rem 0.48rem 0 rgba(203, 202, 220, .56);
 		padding: 30rpx 30rpx;
+	}
+	
+	.billboard{
+		width: 520upx;
+		margin: 0 auto;
 	}
 </style>
